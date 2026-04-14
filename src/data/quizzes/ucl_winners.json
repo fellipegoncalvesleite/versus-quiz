@@ -1,0 +1,31 @@
+{
+  "id": "ucl_winners",
+  "label": "UEFA Champions League Winners",
+  "kind": "list",
+  "prompt": "Name every club that has won the European Cup / UEFA Champions League",
+  "items": [
+    { "id": "real_madrid", "answer": "Real Madrid", "aliases": [] },
+    { "id": "ac_milan", "answer": "AC Milan", "aliases": ["Milan"] },
+    { "id": "bayern_munich", "answer": "Bayern Munich", "aliases": ["FC Bayern", "Bayern Munchen"] },
+    { "id": "liverpool", "answer": "Liverpool", "aliases": ["Liverpool FC"] },
+    { "id": "barcelona", "answer": "Barcelona", "aliases": ["FC Barcelona", "Barca"] },
+    { "id": "ajax", "answer": "Ajax", "aliases": ["AFC Ajax"] },
+    { "id": "inter_milan", "answer": "Inter Milan", "aliases": ["Inter", "Internazionale"] },
+    { "id": "manchester_united", "answer": "Manchester United", "aliases": ["Man United", "Man Utd", "MUFC"] },
+    { "id": "benfica", "answer": "Benfica", "aliases": ["SL Benfica"] },
+    { "id": "chelsea", "answer": "Chelsea", "aliases": ["Chelsea FC"] },
+    { "id": "juventus", "answer": "Juventus", "aliases": ["Juve"] },
+    { "id": "nottingham_forest", "answer": "Nottingham Forest", "aliases": ["Forest"] },
+    { "id": "porto", "answer": "Porto", "aliases": ["FC Porto"] },
+    { "id": "celtic", "answer": "Celtic", "aliases": ["Celtic FC"] },
+    { "id": "hamburg", "answer": "Hamburg", "aliases": ["Hamburger SV", "HSV"] },
+    { "id": "marseille", "answer": "Marseille", "aliases": ["Olympique de Marseille", "OM"] },
+    { "id": "dortmund", "answer": "Borussia Dortmund", "aliases": ["Dortmund", "BVB"] },
+    { "id": "feyenoord", "answer": "Feyenoord", "aliases": [] },
+    { "id": "aston_villa", "answer": "Aston Villa", "aliases": ["Villa"] },
+    { "id": "psv", "answer": "PSV Eindhoven", "aliases": ["PSV"] },
+    { "id": "red_star", "answer": "Red Star Belgrade", "aliases": ["Crvena Zvezda"] },
+    { "id": "steaua", "answer": "Steaua Bucharest", "aliases": ["Steaua Bucuresti", "FCSB"] },
+    { "id": "manchester_city", "answer": "Manchester City", "aliases": ["Man City", "City"] }
+  ]
+}
