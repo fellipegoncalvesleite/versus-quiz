@@ -95,9 +95,9 @@ export default function Game({
   const progress = `${claims.length} / ${quiz.items.length}`;
 
   return (
-    <main className="min-h-screen p-4 grid gap-4 lg:grid-cols-[1fr_280px] max-w-[1400px] mx-auto">
-      <section className="space-y-3">
-        <header className="flex items-baseline justify-between">
+    <main className="min-h-screen p-4 grid gap-4 max-w-[1400px] mx-auto lg:h-screen lg:grid-cols-[minmax(0,1fr)_280px] lg:overflow-hidden">
+      <section className="flex min-h-0 flex-col gap-3">
+        <header className="flex items-baseline justify-between shrink-0">
           <div>
             <h1 className="text-xl font-bold">{quiz.label}</h1>
             <p className="text-xs text-neutral-500">{quiz.prompt}</p>
@@ -125,14 +125,16 @@ export default function Game({
           }`}
         />
 
-        {quiz.kind === "map" ? (
-          <MapBoard quiz={quiz} ownershipOf={ownershipOf} />
-        ) : (
-          <ListBoard quiz={quiz} ownershipOf={ownershipOf} />
-        )}
+        <div className="min-h-0 lg:flex-1 lg:overflow-auto lg:pr-1">
+          {quiz.kind === "map" ? (
+            <MapBoard quiz={quiz} ownershipOf={ownershipOf} />
+          ) : (
+            <ListBoard quiz={quiz} ownershipOf={ownershipOf} />
+          )}
+        </div>
       </section>
 
-      <aside className="space-y-4">
+      <aside className="space-y-4 lg:min-h-0 lg:overflow-auto lg:pr-1">
         <section>
           <h2 className="text-xs uppercase text-neutral-500 mb-2">Scoreboard</h2>
           <PlayerBadges players={players} meId={meId} />

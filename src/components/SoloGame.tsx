@@ -112,9 +112,9 @@ export default function SoloGame({ quizId, timeLimit }: { quizId: string; timeLi
   }
 
   return (
-    <main className="min-h-[80vh] p-4 grid gap-4 lg:grid-cols-[1fr_260px] max-w-[1400px] mx-auto">
-      <section className="space-y-3">
-        <header className="flex items-baseline justify-between flex-wrap gap-2">
+    <main className="min-h-[80vh] p-4 grid gap-4 max-w-[1400px] mx-auto lg:h-[calc(100vh-3.5rem)] lg:grid-cols-[minmax(0,1fr)_260px] lg:overflow-hidden">
+      <section className="flex min-h-0 flex-col gap-3">
+        <header className="flex items-baseline justify-between flex-wrap gap-2 shrink-0">
           <div>
             <h1 className="text-xl font-bold">{meta.label}</h1>
             <p className="text-xs text-neutral-500">{quiz.prompt}</p>
@@ -144,14 +144,16 @@ export default function SoloGame({ quizId, timeLimit }: { quizId: string; timeLi
             flash === "ok" ? "border-emerald-500" : flash === "bad" ? "border-red-500" : "border-neutral-800 focus:border-neutral-500"
           }`}
         />
-        {quiz.kind === "map" ? (
-          <MapBoard quiz={quiz} ownershipOf={ownershipOf} />
-        ) : (
-          <ListBoard quiz={quiz} ownershipOf={ownershipOf} />
-        )}
+        <div className="min-h-0 lg:flex-1 lg:overflow-auto lg:pr-1">
+          {quiz.kind === "map" ? (
+            <MapBoard quiz={quiz} ownershipOf={ownershipOf} />
+          ) : (
+            <ListBoard quiz={quiz} ownershipOf={ownershipOf} />
+          )}
+        </div>
       </section>
 
-      <aside className="space-y-4">
+      <aside className="space-y-4 lg:min-h-0 lg:overflow-auto lg:pr-1">
         <section>
           <h2 className="text-xs uppercase text-neutral-500 mb-2">Recent</h2>
           {recentClaims.length === 0 ? (
