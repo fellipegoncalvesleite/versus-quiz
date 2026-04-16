@@ -98,6 +98,10 @@ function SvgMapPanel({
   ownershipOf: (itemId: string) => BoardOwnership;
   subtitle: string;
 }) {
+  const seaColor = "#0f1b2d";
+  const landFill = "#171717";
+  const landStroke = "#3f3f46";
+
   return (
     <section className="bg-neutral-900 border border-neutral-800 rounded-xl p-3 sm:p-4 space-y-3">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
@@ -106,19 +110,23 @@ function SvgMapPanel({
           <p className="text-sm text-neutral-400">{subtitle}</p>
         </div>
         <div className="flex flex-wrap gap-3 text-[11px] text-neutral-500">
-          <LegendSwatch color="#171717" border="#3f3f46" label="Available" />
-          <LegendSwatch color="#09090b" border="#202020" label="Not in quiz" />
+          <LegendSwatch color={landFill} border={landStroke} label="Land" />
+          <LegendSwatch color={seaColor} border="#1d4ed8" label="Sea" />
           <LegendSwatch color="#22c55e" border="#22c55e" label="Claimed" />
         </div>
       </div>
 
-      <div className="overflow-x-auto">
-        <svg viewBox={map.viewBox} className="min-w-[720px] w-full h-auto" preserveAspectRatio="xMidYMid meet">
+      <div className="overflow-x-auto rounded-lg" style={{ backgroundColor: seaColor }}>
+        <svg
+          viewBox={map.viewBox}
+          className="min-w-[720px] w-full h-auto"
+          preserveAspectRatio="xMidYMid meet"
+        >
           {map.locations.map((location) => {
             const item = itemByMapId.get(location.id.toLowerCase());
             const ownership = item ? ownershipOf(item.id) : null;
-            const fill = ownership?.color ?? (item ? "#171717" : "#09090b");
-            const stroke = ownership?.color ?? (item ? "#3f3f46" : "#202020");
+            const fill = ownership?.color ?? landFill;
+            const stroke = ownership?.color ?? landStroke;
 
             return (
               <path
@@ -128,7 +136,6 @@ function SvgMapPanel({
                 stroke={stroke}
                 strokeWidth={0.8}
                 vectorEffect="non-scaling-stroke"
-                opacity={item ? 1 : 0.52}
               />
             );
           })}
