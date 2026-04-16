@@ -7,6 +7,7 @@ import PlayerBadges from "./PlayerBadges";
 import ClaimFeed from "./ClaimFeed";
 import MapBoard from "./MapBoard";
 import ListBoard from "./ListBoard";
+import type { BoardOwnership } from "./BoardPrimitives";
 
 export default function Game({
   room, players, session, claims, quiz, meId,
@@ -21,6 +22,7 @@ export default function Game({
 
   const claimedIds = useMemo(() => new Set(claims.map((c) => c.item_id)), [claims]);
   const playerById = useMemo(() => new Map(players.map((p) => [p.id, p])), [players]);
+  const claimByItemId = useMemo(() => new Map(claims.map((claim) => [claim.item_id, claim])), [claims]);
 
   // Keep input focused.
   useEffect(() => { inputRef.current?.focus(); }, []);
@@ -80,10 +82,14 @@ export default function Game({
     return () => clearTimeout(t);
   }, [input, quiz.id, claimedIds, room.code, meId, session.id]);
 
-  const itemClaimerColor = (itemId: string): string | null => {
-    const c = claims.find((x) => x.item_id === itemId);
-    if (!c) return null;
-    return playerById.get(c.player_id)?.color ?? "#888";
+  const ownershipOf = (itemId: string): BoardOwnership => {
+    const claim = claimByItemId.get(itemId);
+    if (!claim) return null;
+    const player = playerById.get(claim.player_id);
+    return {
+      color: player?.color ?? "#888",
+      name: player?.nickname ?? "Claimed",
+    };
   };
 
   const progress = `${claims.length} / ${quiz.items.length}`;
@@ -120,9 +126,9 @@ export default function Game({
         />
 
         {quiz.kind === "map" ? (
-          <MapBoard quiz={quiz} colorOf={itemClaimerColor} />
+          <MapBoard quiz={quiz} ownershipOf={ownershipOf} />
         ) : (
-          <ListBoard quiz={quiz} colorOf={itemClaimerColor} />
+          <ListBoard quiz={quiz} ownershipOf={ownershipOf} />
         )}
       </section>
 

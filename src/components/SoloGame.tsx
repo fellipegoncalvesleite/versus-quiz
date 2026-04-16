@@ -5,6 +5,7 @@ import { getQuiz, matchAnswer } from "@/lib/quizzes";
 import { getQuizMeta } from "@/lib/quizMeta";
 import MapBoard from "./MapBoard";
 import ListBoard from "./ListBoard";
+import type { BoardOwnership } from "./BoardPrimitives";
 
 const PLAYER_COLOR = "#22c55e";
 
@@ -63,7 +64,11 @@ export default function SoloGame({ quizId, timeLimit }: { quizId: string; timeLi
     );
   }
 
-  const colorOf = (itemId: string) => (claimed.has(itemId) ? PLAYER_COLOR : null);
+  const ownershipOf = (itemId: string): BoardOwnership => (
+    claimed.has(itemId)
+      ? { color: PLAYER_COLOR, name: "You" }
+      : null
+  );
 
   if (finished) {
     const missed = quiz.items.filter((it) => !claimed.has(it.id));
@@ -140,9 +145,9 @@ export default function SoloGame({ quizId, timeLimit }: { quizId: string; timeLi
           }`}
         />
         {quiz.kind === "map" ? (
-          <MapBoard quiz={quiz} colorOf={colorOf} />
+          <MapBoard quiz={quiz} ownershipOf={ownershipOf} />
         ) : (
-          <ListBoard quiz={quiz} colorOf={colorOf} />
+          <ListBoard quiz={quiz} ownershipOf={ownershipOf} />
         )}
       </section>
 

@@ -1,48 +1,262 @@
-import type { Quiz } from "@/lib/quizzes";
+import usaMap from "@svg-maps/usa";
+import worldMap from "@svg-maps/world";
+import type { Quiz, QuizItem } from "@/lib/quizzes";
+import { getCountryName, US_STATE_GROUPS, WORLD_COUNTRY_GROUPS } from "@/lib/boardData";
+import { maskLabel, OwnershipBadge, type BoardOwnership } from "./BoardPrimitives";
 
-/**
- * MVP placeholder map: a responsive SVG grid of region tiles.
- * Each tile shows the region code (hint) and fills with player color when claimed.
- * Drop in real GeoJSON/TopoJSON later — keep the colorOf(region) API.
- */
-export default function MapBoard({ quiz, colorOf }: { quiz: Quiz; colorOf: (itemId: string) => string | null }) {
-  const cols = quiz.items.length > 40 ? 10 : 8;
-  const rows = Math.ceil(quiz.items.length / cols);
-  const tileW = 44; const tileH = 36; const gap = 4;
-  const w = cols * (tileW + gap); const h = rows * (tileH + gap);
+type SvgLocation = {
+  id: string;
+  name: string;
+  path: string;
+};
+
+type SvgMap = {
+  label: string;
+  viewBox: string;
+  locations: SvgLocation[];
+};
+
+export default function MapBoard({
+  quiz,
+  ownershipOf,
+}: {
+  quiz: Quiz;
+  ownershipOf: (itemId: string) => BoardOwnership;
+}) {
+  const itemByMapId = new Map(quiz.items.map((item) => [item.id.toLowerCase(), item]));
+
+  if (quiz.id === "world_countries") {
+    return (
+      <div className="space-y-4">
+        <SvgMapPanel
+          map={worldMap as SvgMap}
+          itemByMapId={itemByMapId}
+          ownershipOf={ownershipOf}
+          subtitle="Claim countries directly on the world map. Claimed countries lock in the winner's color."
+        />
+        <GroupedClaimBoard
+          title="Countries by Continent"
+          groups={WORLD_COUNTRY_GROUPS}
+          itemById={new Map(quiz.items.map((item) => [item.id.toUpperCase(), item]))}
+          ownershipOf={ownershipOf}
+        />
+      </div>
+    );
+  }
+
+  if (quiz.id === "us_states") {
+    return (
+      <div className="space-y-4">
+        <SvgMapPanel
+          map={usaMap as SvgMap}
+          itemByMapId={itemByMapId}
+          ownershipOf={ownershipOf}
+          subtitle="Every state can be claimed once. Locked states stay filled with the claiming player's color."
+        />
+        <GroupedClaimBoard
+          title="States by Region"
+          groups={US_STATE_GROUPS}
+          itemById={new Map(quiz.items.map((item) => [item.id.toUpperCase(), item]))}
+          ownershipOf={ownershipOf}
+        />
+      </div>
+    );
+  }
+
+  if (quiz.id === "world_capitals") {
+    return (
+      <div className="space-y-4">
+        <SvgMapPanel
+          map={worldMap as SvgMap}
+          itemByMapId={itemByMapId}
+          ownershipOf={ownershipOf}
+          subtitle="Typing a capital colors its country on the map. The table below keeps country and capital paired together."
+        />
+        <CapitalsBoard items={quiz.items} ownershipOf={ownershipOf} />
+      </div>
+    );
+  }
 
   return (
-    <div className="bg-neutral-900 border border-neutral-800 rounded p-3 overflow-x-auto">
-      <svg viewBox={`0 0 ${w} ${h}`} className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
-        {quiz.items.map((it, i) => {
-          const col = i % cols;
-          const row = Math.floor(i / cols);
-          const x = col * (tileW + gap);
-          const y = row * (tileH + gap);
-          const color = colorOf(it.id);
-          return (
-            <g key={it.id} transform={`translate(${x} ${y})`}>
-              <rect
-                width={tileW} height={tileH}
-                rx={4} ry={4}
-                fill={color ?? "#171717"}
-                stroke={color ?? "#262626"}
-                strokeWidth={1}
+    <SvgMapPanel
+      map={worldMap as SvgMap}
+      itemByMapId={itemByMapId}
+      ownershipOf={ownershipOf}
+      subtitle="Claim answers to lock the matching regions on the board."
+    />
+  );
+}
+
+function SvgMapPanel({
+  map,
+  itemByMapId,
+  ownershipOf,
+  subtitle,
+}: {
+  map: SvgMap;
+  itemByMapId: Map<string, QuizItem>;
+  ownershipOf: (itemId: string) => BoardOwnership;
+  subtitle: string;
+}) {
+  return (
+    <section className="bg-neutral-900 border border-neutral-800 rounded-xl p-3 sm:p-4 space-y-3">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h2 className="text-xs uppercase tracking-wider text-neutral-500">Map Board</h2>
+          <p className="text-sm text-neutral-400">{subtitle}</p>
+        </div>
+        <div className="flex flex-wrap gap-3 text-[11px] text-neutral-500">
+          <LegendSwatch color="#171717" border="#3f3f46" label="Available" />
+          <LegendSwatch color="#09090b" border="#202020" label="Not in quiz" />
+          <LegendSwatch color="#22c55e" border="#22c55e" label="Claimed" />
+        </div>
+      </div>
+
+      <div className="overflow-x-auto">
+        <svg viewBox={map.viewBox} className="min-w-[720px] w-full h-auto" preserveAspectRatio="xMidYMid meet">
+          {map.locations.map((location) => {
+            const item = itemByMapId.get(location.id.toLowerCase());
+            const ownership = item ? ownershipOf(item.id) : null;
+            const fill = ownership?.color ?? (item ? "#171717" : "#09090b");
+            const stroke = ownership?.color ?? (item ? "#3f3f46" : "#202020");
+
+            return (
+              <path
+                key={location.id}
+                d={location.path}
+                fill={fill}
+                stroke={stroke}
+                strokeWidth={0.8}
+                vectorEffect="non-scaling-stroke"
+                opacity={item ? 1 : 0.52}
               />
-              <text
-                x={tileW / 2} y={tileH / 2 + 4}
-                textAnchor="middle"
-                fontSize={12}
-                fontFamily="ui-monospace, monospace"
-                fill={color ? "#0a0a0a" : "#525252"}
-                fontWeight={color ? 700 : 400}
-              >
-                {it.region ?? it.id}
-              </text>
-            </g>
+            );
+          })}
+        </svg>
+      </div>
+
+      <p className="text-[11px] text-neutral-600">Map outlines based on svg-maps geometry.</p>
+    </section>
+  );
+}
+
+function GroupedClaimBoard({
+  title,
+  groups,
+  itemById,
+  ownershipOf,
+}: {
+  title: string;
+  groups: Array<{ label: string; itemIds: string[] }>;
+  itemById: Map<string, QuizItem>;
+  ownershipOf: (itemId: string) => BoardOwnership;
+}) {
+  return (
+    <section className="space-y-3">
+      <header>
+        <h2 className="text-xs uppercase tracking-wider text-neutral-500">{title}</h2>
+      </header>
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {groups.map((group) => {
+          const items = group.itemIds
+            .map((id) => itemById.get(id))
+            .filter((item): item is QuizItem => Boolean(item))
+            .sort((a, b) => a.answer.localeCompare(b.answer));
+          const claimedCount = items.filter((item) => ownershipOf(item.id)).length;
+
+          return (
+            <section key={group.label} className="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden">
+              <header className="flex items-center justify-between border-b border-neutral-800 px-3 py-2.5">
+                <h3 className="text-sm font-semibold">{group.label}</h3>
+                <span className="text-[11px] font-mono text-neutral-500">
+                  {claimedCount}/{items.length}
+                </span>
+              </header>
+              <ul className="divide-y divide-neutral-800">
+                {items.map((item) => {
+                  const ownership = ownershipOf(item.id);
+                  return (
+                    <li key={item.id} className="flex items-center justify-between gap-3 px-3 py-2 text-sm">
+                      <span
+                        className={`min-w-0 truncate ${ownership ? "font-medium" : "text-neutral-600"}`}
+                        style={ownership ? { color: ownership.color } : undefined}
+                      >
+                        {ownership ? item.answer : maskLabel(item.answer)}
+                      </span>
+                      <OwnershipBadge ownership={ownership} />
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
           );
         })}
-      </svg>
-    </div>
+      </div>
+    </section>
+  );
+}
+
+function CapitalsBoard({
+  items,
+  ownershipOf,
+}: {
+  items: QuizItem[];
+  ownershipOf: (itemId: string) => BoardOwnership;
+}) {
+  const rows = [...items].sort((a, b) => getCountryName(a.id).localeCompare(getCountryName(b.id)));
+
+  return (
+    <section className="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden">
+      <header className="border-b border-neutral-800 px-4 py-3">
+        <h2 className="text-xs uppercase tracking-wider text-neutral-500">Countries and Capitals</h2>
+      </header>
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[560px] text-sm">
+          <thead className="text-left text-xs uppercase tracking-wider text-neutral-500">
+            <tr>
+              <th className="px-4 py-2.5 font-medium">Country</th>
+              <th className="px-4 py-2.5 font-medium">Capital</th>
+              <th className="px-4 py-2.5 font-medium">Claimed by</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((item) => {
+              const ownership = ownershipOf(item.id);
+              return (
+                <tr key={item.id} className="border-t border-neutral-800">
+                  <td className="px-4 py-3 text-neutral-300">{getCountryName(item.id)}</td>
+                  <td
+                    className={`px-4 py-3 ${ownership ? "font-medium" : "text-neutral-600"}`}
+                    style={ownership ? { color: ownership.color } : undefined}
+                  >
+                    {ownership ? item.answer : maskLabel(item.answer)}
+                  </td>
+                  <td className="px-4 py-3">
+                    <OwnershipBadge ownership={ownership} />
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
+function LegendSwatch({
+  color,
+  border,
+  label,
+}: {
+  color: string;
+  border: string;
+  label: string;
+}) {
+  return (
+    <span className="inline-flex items-center gap-2">
+      <span className="h-3.5 w-3.5 rounded-sm border" style={{ backgroundColor: color, borderColor: border }} />
+      <span>{label}</span>
+    </span>
   );
 }
