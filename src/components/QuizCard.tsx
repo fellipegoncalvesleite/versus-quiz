@@ -5,6 +5,9 @@ import type { QuizMeta } from "@/lib/quizMeta";
 
 export default function QuizCard({ quiz, size = "normal" }: { quiz: QuizMeta; size?: "normal" | "large" }) {
   const isLarge = size === "large";
+  const visibleCategories = quiz.categories.slice(0, 2);
+  const hiddenCategoryCount = Math.max(0, quiz.categories.length - visibleCategories.length);
+
   return (
     <Link href={`/quiz/${quiz.id}`} className="quiz-card block group">
       <div
@@ -24,13 +27,23 @@ export default function QuizCard({ quiz, size = "normal" }: { quiz: QuizMeta; si
           className="quiz-card-glow absolute inset-0 opacity-0 transition-opacity"
           style={{ background: `radial-gradient(circle at 50% 80%, ${quiz.color}, transparent 70%)` }}
         />
-        <div className="absolute top-3 left-3 flex gap-1.5">
-          <span
-            className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full"
-            style={{ background: `${quiz.color}25`, color: quiz.color }}
-          >
-            {quiz.category}
-          </span>
+        <div className="absolute top-3 left-3 flex max-w-[calc(100%-4.5rem)] flex-wrap gap-1.5">
+          {visibleCategories.map((category, index) => (
+            <span
+              key={category}
+              className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                index === 0 ? "" : "bg-neutral-800 text-neutral-300"
+              }`}
+              style={index === 0 ? { background: `${quiz.color}25`, color: quiz.color } : undefined}
+            >
+              {category}
+            </span>
+          ))}
+          {hiddenCategoryCount > 0 ? (
+            <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-neutral-800 text-neutral-400">
+              +{hiddenCategoryCount}
+            </span>
+          ) : null}
           <span
             className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-neutral-800 text-neutral-400"
           >

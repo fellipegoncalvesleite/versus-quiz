@@ -70,13 +70,18 @@ export default function QuizDetail() {
           </div>
         </div>
         <div>
-          <div className="flex gap-2 mb-1">
-            <span
-              className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full"
-              style={{ background: `${quiz.color}25`, color: quiz.color }}
-            >
-              {quiz.category}
-            </span>
+          <div className="flex flex-wrap gap-2 mb-1">
+            {quiz.categories.map((category, index) => (
+              <span
+                key={category}
+                className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                  index === 0 ? "" : "bg-neutral-800 text-neutral-300"
+                }`}
+                style={index === 0 ? { background: `${quiz.color}25`, color: quiz.color } : undefined}
+              >
+                {category}
+              </span>
+            ))}
             <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-neutral-800 text-neutral-400">
               {quiz.kind === "map" ? "Map mode" : "List mode"}
             </span>

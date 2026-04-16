@@ -1,8 +1,12 @@
 import worldCountries from "@/data/quizzes/world_countries.json";
 import usStates from "@/data/quizzes/us_states.json";
 import worldCapitals from "@/data/quizzes/world_capitals.json";
+import brazilStates from "@/data/quizzes/brazil_states.json";
+import brazilStateCapitals from "@/data/quizzes/brazil_state_capitals.json";
 import usUniversities from "@/data/quizzes/us_universities.json";
 import uclWinners from "@/data/quizzes/ucl_winners.json";
+import brasileiraoFinalists from "@/data/quizzes/brasileirao_finalists.json";
+import copaDoBrasilFinalists from "@/data/quizzes/copa_do_brasil_finalists.json";
 import { normalize } from "./normalize";
 
 export type QuizItem = {
@@ -24,8 +28,12 @@ const QUIZZES: Record<string, Quiz> = {
   world_countries: worldCountries as Quiz,
   us_states: usStates as Quiz,
   world_capitals: worldCapitals as Quiz,
+  brazil_states: brazilStates as Quiz,
+  brazil_state_capitals: brazilStateCapitals as Quiz,
   us_universities: usUniversities as Quiz,
   ucl_winners: uclWinners as Quiz,
+  brasileirao_finalists: brasileiraoFinalists as Quiz,
+  copa_do_brasil_finalists: copaDoBrasilFinalists as Quiz,
 };
 
 export function getQuiz(id: string): Quiz | null {

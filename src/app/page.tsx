@@ -1,28 +1,30 @@
 "use client";
 import { useMemo, useState } from "react";
-import { QUIZ_META, CATEGORIES } from "@/lib/quizMeta";
+import { QUIZ_FILTERS, QUIZ_META, type QuizFilter } from "@/lib/quizMeta";
 import QuizCard from "@/components/QuizCard";
 
 export default function Home() {
   const [search, setSearch] = useState("");
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeFilter, setActiveFilter] = useState<QuizFilter>("All");
 
   const featured = QUIZ_META.filter((q) => q.featured);
 
   const filtered = useMemo(() => {
     let result = QUIZ_META;
-    if (activeCategory) result = result.filter((q) => q.category === activeCategory);
+    if (activeFilter !== "All") {
+      result = result.filter((q) => q.categories.includes(activeFilter));
+    }
     if (search.trim()) {
       const s = search.toLowerCase();
       result = result.filter(
         (q) =>
           q.label.toLowerCase().includes(s) ||
           q.description.toLowerCase().includes(s) ||
-          q.category.toLowerCase().includes(s)
+          q.categories.some((category) => category.toLowerCase().includes(s))
       );
     }
     return result;
-  }, [search, activeCategory]);
+  }, [search, activeFilter]);
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-8 space-y-10">
@@ -67,23 +69,15 @@ export default function Home() {
             />
           </div>
           <div className="flex gap-2 flex-wrap">
-            <button
-              onClick={() => setActiveCategory(null)}
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                !activeCategory ? "bg-white text-black" : "bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white"
-              }`}
-            >
-              All
-            </button>
-            {CATEGORIES.map((cat) => (
+            {QUIZ_FILTERS.map((filter) => (
               <button
-                key={cat}
-                onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  activeCategory === cat ? "bg-white text-black" : "bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white"
+                  activeFilter === filter ? "bg-white text-black" : "bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white"
                 }`}
               >
-                {cat}
+                {filter}
               </button>
             ))}
           </div>
@@ -93,7 +87,7 @@ export default function Home() {
       {/* All Quizzes Grid */}
       <section>
         <h2 className="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-4">
-          {activeCategory ?? "All"} Quizzes
+          {activeFilter} Quizzes
           <span className="text-neutral-600 ml-2">({filtered.length})</span>
         </h2>
         {filtered.length === 0 ? (
