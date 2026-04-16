@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import type { Room, Player } from "@/app/room/[code]/RoomClient";
+import { getQuizMeta } from "@/lib/quizMeta";
 import PlayerBadges from "./PlayerBadges";
 
 const TIME_OPTS: { label: string; value: number | null }[] = [
@@ -20,6 +21,7 @@ export default function Lobby({
   const [err, setErr] = useState<string | null>(null);
   const [quizId, setQuizId] = useState(room.quiz_id);
   const [timeLimit, setTimeLimit] = useState<number | null>(room.time_limit_seconds);
+  const meta = getQuizMeta(quizId);
 
   async function start() {
     if (players.length < 2) { setErr("Need at least 2 players"); return; }
@@ -37,54 +39,86 @@ export default function Lobby({
   }
 
   return (
-    <main className="min-h-screen p-6 max-w-2xl mx-auto space-y-6">
-      <header className="flex items-baseline justify-between">
-        <h1 className="text-2xl font-bold">Lobby</h1>
-        <div className="text-right">
-          <div className="text-xs text-neutral-500">Room code</div>
-          <div className="text-2xl tracking-widest font-mono">{room.code}</div>
+    <main className="min-h-[80vh] flex items-center justify-center px-4">
+      <div className="w-full max-w-lg space-y-6">
+        {/* Room code header */}
+        <div className="text-center space-y-2">
+          <div className="inline-flex items-center gap-2 bg-neutral-900 border border-neutral-800 rounded-xl px-6 py-3">
+            <span className="text-xs text-neutral-500 uppercase tracking-wider">Room</span>
+            <span className="text-3xl font-mono font-bold tracking-[0.25em]">{room.code}</span>
+          </div>
+          <p className="text-sm text-neutral-500">Share this code with friends to join</p>
         </div>
-      </header>
 
-      <section>
-        <h2 className="text-sm uppercase text-neutral-500 mb-2">Players ({players.length}/6)</h2>
-        <PlayerBadges players={players} meId={meId} />
-      </section>
+        {/* Quiz info */}
+        {meta && (
+          <div className="flex items-center gap-3 bg-neutral-900 border border-neutral-800 rounded-xl p-4">
+            <div
+              className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0"
+              style={{ background: `${meta.color}15` }}
+            >
+              <span className="text-2xl">{meta.icon}</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <h2 className="font-semibold truncate">{meta.label}</h2>
+              <p className="text-xs text-neutral-500">{meta.itemCount} items</p>
+            </div>
+          </div>
+        )}
 
-      <section className="space-y-3">
-        <h2 className="text-sm uppercase text-neutral-500">Quiz</h2>
-        <select
-          disabled={!isHost}
-          value={quizId}
-          onChange={(e) => setQuizId(e.target.value)}
-          className="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 disabled:opacity-60"
-        >
-          {quizzes.map((q) => <option key={q.id} value={q.id}>{q.label}</option>)}
-        </select>
-        <div className="flex gap-2 flex-wrap">
-          {TIME_OPTS.map((o) => (
-            <button
-              key={String(o.value)}
-              disabled={!isHost}
-              onClick={() => setTimeLimit(o.value)}
-              className={`px-3 py-1.5 rounded border ${timeLimit === o.value ? "bg-white text-black border-white" : "border-neutral-700"} disabled:opacity-60`}
-            >{o.label}</button>
-          ))}
-        </div>
-      </section>
+        {/* Players */}
+        <section>
+          <h2 className="text-xs uppercase text-neutral-500 mb-2 px-1">Players ({players.length}/6)</h2>
+          <PlayerBadges players={players} meId={meId} />
+        </section>
 
-      {isHost ? (
-        <button
-          onClick={start}
-          disabled={busy || players.length < 2}
-          className="w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded disabled:opacity-50"
-        >
-          {players.length < 2 ? "Waiting for players…" : "Start game"}
-        </button>
-      ) : (
-        <p className="text-center text-neutral-500">Waiting for host to start…</p>
-      )}
-      {err && <p className="text-red-400 text-sm text-center">{err}</p>}
+        {/* Host controls */}
+        {isHost && (
+          <section className="space-y-3 bg-neutral-900 border border-neutral-800 rounded-xl p-4">
+            <h3 className="text-xs uppercase text-neutral-500">Host settings</h3>
+            <select
+              value={quizId}
+              onChange={(e) => setQuizId(e.target.value)}
+              className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2"
+            >
+              {quizzes.map((q) => <option key={q.id} value={q.id}>{q.label}</option>)}
+            </select>
+            <div className="flex gap-2 flex-wrap">
+              {TIME_OPTS.map((o) => (
+                <button
+                  key={String(o.value)}
+                  onClick={() => setTimeLimit(o.value)}
+                  className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${
+                    timeLimit === o.value
+                      ? "bg-emerald-500 text-black font-semibold"
+                      : "bg-neutral-800 text-neutral-400 hover:text-white"
+                  }`}
+                >{o.label}</button>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Start */}
+        {isHost ? (
+          <button
+            onClick={start}
+            disabled={busy || players.length < 2}
+            className="w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-xl disabled:opacity-50 transition-colors text-lg"
+          >
+            {players.length < 2 ? "Waiting for players…" : "Start Game"}
+          </button>
+        ) : (
+          <div className="text-center py-4">
+            <div className="inline-flex items-center gap-2 text-neutral-500">
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              Waiting for host to start…
+            </div>
+          </div>
+        )}
+
+        {err && <p className="text-red-400 text-sm text-center">{err}</p>}
+      </div>
     </main>
   );
 }

@@ -1,168 +1,113 @@
 "use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { listQuizzes } from "@/lib/quizzes";
-
-const TIME_OPTS: { label: string; value: number | null }[] = [
-  { label: "2 min", value: 120 },
-  { label: "5 min", value: 300 },
-  { label: "10 min", value: 600 },
-  { label: "Untimed", value: null },
-];
+import { useMemo, useState } from "react";
+import { QUIZ_META, CATEGORIES } from "@/lib/quizMeta";
+import QuizCard from "@/components/QuizCard";
 
 export default function Home() {
-  const router = useRouter();
-  const quizzes = listQuizzes();
-  const [tab, setTab] = useState<"create" | "join">("create");
-  const [nickname, setNickname] = useState("");
-  const [quizId, setQuizId] = useState(quizzes[0].id);
-  const [timeLimit, setTimeLimit] = useState<number | null>(300);
-  const [joinCode, setJoinCode] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [busy, setBusy] = useState(false);
+  const [search, setSearch] = useState("");
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
-  function savePlayer(code: string, roomId: string, playerId: string) {
-    localStorage.setItem(`vq:${code}`, JSON.stringify({ roomId, playerId }));
-  }
+  const featured = QUIZ_META.filter((q) => q.featured);
 
-  async function createRoom() {
-    setError(null);
-    if (!nickname.trim()) return setError("Nickname required");
-    setBusy(true);
-    try {
-      const res = await fetch("/api/rooms", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ nickname, quiz_id: quizId, time_limit_seconds: timeLimit }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "failed");
-      savePlayer(data.code, data.room_id, data.player_id);
-      router.push(`/room/${data.code}`);
-    } catch (e: unknown) {
-      setError((e as Error).message);
-    } finally {
-      setBusy(false);
+  const filtered = useMemo(() => {
+    let result = QUIZ_META;
+    if (activeCategory) result = result.filter((q) => q.category === activeCategory);
+    if (search.trim()) {
+      const s = search.toLowerCase();
+      result = result.filter(
+        (q) =>
+          q.label.toLowerCase().includes(s) ||
+          q.description.toLowerCase().includes(s) ||
+          q.category.toLowerCase().includes(s)
+      );
     }
-  }
-
-  async function joinRoom() {
-    setError(null);
-    if (!nickname.trim()) return setError("Nickname required");
-    if (!joinCode.trim()) return setError("Room code required");
-    setBusy(true);
-    try {
-      const code = joinCode.trim().toUpperCase();
-      const res = await fetch(`/api/rooms/${code}/join`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ nickname }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "failed");
-      savePlayer(code, data.room_id, data.player_id);
-      router.push(`/room/${code}`);
-    } catch (e: unknown) {
-      setError((e as Error).message);
-    } finally {
-      setBusy(false);
-    }
-  }
+    return result;
+  }, [search, activeCategory]);
 
   return (
-    <main className="min-h-screen flex items-center justify-center p-6">
-      <div className="w-full max-w-md space-y-6">
-        <header className="text-center">
-          <h1 className="text-4xl font-bold tracking-tight">Versus Quiz</h1>
-          <p className="text-neutral-400 mt-1">Type faster. Claim first.</p>
-        </header>
+    <main className="max-w-6xl mx-auto px-4 py-8 space-y-10">
+      {/* Hero */}
+      <section className="text-center space-y-4 pt-6 pb-2">
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+          Type fast. Claim first. <span className="text-emerald-400">Win.</span>
+        </h1>
+        <p className="text-neutral-400 text-lg max-w-xl mx-auto">
+          Real-time typing quizzes. Play solo to beat your own record, or challenge
+          friends in a private room. First to type a correct answer claims it.
+        </p>
+      </section>
 
-        <div className="flex gap-2">
-          <button
-            onClick={() => setTab("create")}
-            className={`flex-1 py-2 rounded ${tab === "create" ? "bg-white text-black" : "bg-neutral-800"}`}
-          >
-            Create room
-          </button>
-          <button
-            onClick={() => setTab("join")}
-            className={`flex-1 py-2 rounded ${tab === "join" ? "bg-white text-black" : "bg-neutral-800"}`}
-          >
-            Join room
-          </button>
+      {/* Featured */}
+      <section>
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-4">
+          Featured Quizzes
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {featured.map((q) => (
+            <QuizCard key={q.id} quiz={q} size="large" />
+          ))}
         </div>
+      </section>
 
-        <div className="space-y-3">
-          <label className="block text-sm text-neutral-400">Nickname</label>
-          <input
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-            maxLength={20}
-            className="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 outline-none focus:border-neutral-500"
-            placeholder="Your name"
-          />
-        </div>
-
-        {tab === "create" ? (
-          <>
-            <div className="space-y-2">
-              <label className="block text-sm text-neutral-400">Quiz</label>
-              <select
-                value={quizId}
-                onChange={(e) => setQuizId(e.target.value)}
-                className="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2"
+      {/* Search + Filters */}
+      <section className="space-y-4">
+        <div className="flex flex-col sm:flex-row gap-3">
+          <div className="relative flex-1">
+            <svg
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+            >
+              <circle cx={11} cy={11} r={8} /><path d="m21 21-4.35-4.35" />
+            </svg>
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search quizzes..."
+              className="w-full bg-neutral-900 border border-neutral-800 rounded-lg pl-10 pr-4 py-2.5 outline-none focus:border-neutral-600 transition-colors"
+            />
+          </div>
+          <div className="flex gap-2 flex-wrap">
+            <button
+              onClick={() => setActiveCategory(null)}
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                !activeCategory ? "bg-white text-black" : "bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white"
+              }`}
+            >
+              All
+            </button>
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  activeCategory === cat ? "bg-white text-black" : "bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white"
+                }`}
               >
-                {quizzes.map((q) => (
-                  <option key={q.id} value={q.id}>{q.label}</option>
-                ))}
-              </select>
-            </div>
-            <div className="space-y-2">
-              <label className="block text-sm text-neutral-400">Time limit</label>
-              <div className="flex gap-2 flex-wrap">
-                {TIME_OPTS.map((o) => (
-                  <button
-                    key={String(o.value)}
-                    onClick={() => setTimeLimit(o.value)}
-                    className={`px-3 py-1.5 rounded border ${timeLimit === o.value ? "bg-white text-black border-white" : "border-neutral-700"}`}
-                  >
-                    {o.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-            <button
-              onClick={createRoom}
-              disabled={busy}
-              className="w-full py-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded disabled:opacity-50"
-            >
-              Create room
-            </button>
-          </>
-        ) : (
-          <>
-            <div className="space-y-2">
-              <label className="block text-sm text-neutral-400">Room code</label>
-              <input
-                value={joinCode}
-                onChange={(e) => setJoinCode(e.target.value.toUpperCase())}
-                maxLength={6}
-                className="w-full bg-neutral-900 border border-neutral-800 rounded px-3 py-2 tracking-widest uppercase text-center text-xl"
-                placeholder="ABCD"
-              />
-            </div>
-            <button
-              onClick={joinRoom}
-              disabled={busy}
-              className="w-full py-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded disabled:opacity-50"
-            >
-              Join room
-            </button>
-          </>
-        )}
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        {error && <p className="text-red-400 text-sm text-center">{error}</p>}
-      </div>
+      {/* All Quizzes Grid */}
+      <section>
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-4">
+          {activeCategory ?? "All"} Quizzes
+          <span className="text-neutral-600 ml-2">({filtered.length})</span>
+        </h2>
+        {filtered.length === 0 ? (
+          <div className="text-center py-12 text-neutral-600">
+            No quizzes match your search.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filtered.map((q) => (
+              <QuizCard key={q.id} quiz={q} />
+            ))}
+          </div>
+        )}
+      </section>
     </main>
   );
 }

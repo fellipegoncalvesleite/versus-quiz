@@ -114,7 +114,7 @@ export default function Game({
           autoFocus
           autoComplete="off"
           spellCheck={false}
-          className={`w-full bg-neutral-900 border-2 rounded px-4 py-3 text-lg outline-none transition-colors ${
+          className={`w-full bg-neutral-900 border-2 rounded-lg px-4 py-3 text-lg outline-none transition-colors ${
             flash === "ok" ? "border-emerald-500" : flash === "bad" ? "border-red-500" : "border-neutral-800 focus:border-neutral-500"
           }`}
         />
