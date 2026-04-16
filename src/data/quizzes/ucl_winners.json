@@ -1,8 +1,8 @@
 {
   "id": "ucl_winners",
-  "label": "UEFA Champions League Winners",
+  "label": "Champions League Winners & Runners-up",
   "kind": "list",
-  "prompt": "Name every club that has won the European Cup / UEFA Champions League",
+  "prompt": "Name every club that has won or finished runner-up in a European Cup / UEFA Champions League final",
   "items": [
     { "id": "real_madrid", "answer": "Real Madrid", "aliases": [] },
     { "id": "ac_milan", "answer": "AC Milan", "aliases": ["Milan"] },
@@ -27,6 +27,24 @@
     { "id": "red_star", "answer": "Red Star Belgrade", "aliases": ["Crvena Zvezda"] },
     { "id": "steaua", "answer": "Steaua Bucharest", "aliases": ["Steaua Bucuresti", "FCSB"] },
     { "id": "manchester_city", "answer": "Manchester City", "aliases": ["Man City", "City"] },
-    { "id": "psg", "answer": "Paris Saint-Germain", "aliases": ["PSG", "Paris SG"] }
+    { "id": "psg", "answer": "Paris Saint-Germain", "aliases": ["PSG", "Paris SG"] },
+    { "id": "arsenal", "answer": "Arsenal", "aliases": ["Arsenal FC"] },
+    { "id": "atletico_madrid", "answer": "Atletico Madrid", "aliases": ["Atletico", "Atleti"] },
+    { "id": "bayer_leverkusen", "answer": "Bayer Leverkusen", "aliases": ["Leverkusen"] },
+    { "id": "gladbach", "answer": "Borussia Monchengladbach", "aliases": ["Monchengladbach", "Gladbach", "Borussia M'gladbach"] },
+    { "id": "club_brugge", "answer": "Club Brugge", "aliases": ["Brugge"] },
+    { "id": "eintracht_frankfurt", "answer": "Eintracht Frankfurt", "aliases": ["Frankfurt"] },
+    { "id": "fiorentina", "answer": "Fiorentina", "aliases": ["ACF Fiorentina"] },
+    { "id": "leeds_united", "answer": "Leeds United", "aliases": ["Leeds"] },
+    { "id": "malmo", "answer": "Malmo FF", "aliases": ["Malmo"] },
+    { "id": "monaco", "answer": "Monaco", "aliases": ["AS Monaco"] },
+    { "id": "panathinaikos", "answer": "Panathinaikos", "aliases": ["Panathinaikos FC"] },
+    { "id": "partizan", "answer": "Partizan", "aliases": ["FK Partizan"] },
+    { "id": "reims", "answer": "Reims", "aliases": ["Stade de Reims"] },
+    { "id": "roma", "answer": "Roma", "aliases": ["AS Roma"] },
+    { "id": "saint_etienne", "answer": "Saint-Etienne", "aliases": ["St Etienne", "AS Saint-Etienne"] },
+    { "id": "sampdoria", "answer": "Sampdoria", "aliases": ["UC Sampdoria"] },
+    { "id": "tottenham", "answer": "Tottenham Hotspur", "aliases": ["Tottenham", "Spurs"] },
+    { "id": "valencia", "answer": "Valencia", "aliases": ["Valencia CF"] }
   ]
 }
