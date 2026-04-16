@@ -136,6 +136,56 @@ export const UCL_FINALS: UclFinal[] = [
   { season: "2024-25", winnerId: "psg", runnerUp: "Inter Milan", score: "5–0", venue: "Allianz Arena, Munich, Germany" },
 ];
 
+const UCL_FINALIST_IDS = new Map<string, string>([
+  ["AC Milan", "ac_milan"],
+  ["Ajax", "ajax"],
+  ["Arsenal", "arsenal"],
+  ["Aston Villa", "aston_villa"],
+  ["Atletico Madrid", "atletico_madrid"],
+  ["Bayer Leverkusen", "bayer_leverkusen"],
+  ["Bayern Munich", "bayern_munich"],
+  ["Benfica", "benfica"],
+  ["Borussia Dortmund", "dortmund"],
+  ["Borussia Monchengladbach", "gladbach"],
+  ["Barcelona", "barcelona"],
+  ["Celtic", "celtic"],
+  ["Chelsea", "chelsea"],
+  ["Club Brugge", "club_brugge"],
+  ["Eintracht Frankfurt", "eintracht_frankfurt"],
+  ["Feyenoord", "feyenoord"],
+  ["Fiorentina", "fiorentina"],
+  ["Hamburger SV", "hamburg"],
+  ["Inter Milan", "inter_milan"],
+  ["Juventus", "juventus"],
+  ["Leeds United", "leeds_united"],
+  ["Liverpool", "liverpool"],
+  ["Malmo FF", "malmo"],
+  ["Manchester City", "manchester_city"],
+  ["Manchester United", "manchester_united"],
+  ["Marseille", "marseille"],
+  ["Milan", "ac_milan"],
+  ["Monaco", "monaco"],
+  ["Nottingham Forest", "nottingham_forest"],
+  ["PSV Eindhoven", "psv"],
+  ["Panathinaikos", "panathinaikos"],
+  ["Paris Saint-Germain", "psg"],
+  ["Partizan", "partizan"],
+  ["Porto", "porto"],
+  ["Real Madrid", "real_madrid"],
+  ["Red Star Belgrade", "red_star"],
+  ["Reims", "reims"],
+  ["Roma", "roma"],
+  ["Saint-Etienne", "saint_etienne"],
+  ["Sampdoria", "sampdoria"],
+  ["Steaua Bucuresti", "steaua"],
+  ["Tottenham Hotspur", "tottenham"],
+  ["Valencia", "valencia"],
+]);
+
+export function getUclFinalistId(name: string): string | null {
+  return UCL_FINALIST_IDS.get(name) ?? null;
+}
+
 const countryNameByCode = new Map(
   ((worldCountries as QuizSeed).items ?? []).map((item) => [item.id.toUpperCase(), item.answer]),
 );

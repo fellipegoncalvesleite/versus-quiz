@@ -98,9 +98,9 @@ function SvgMapPanel({
   ownershipOf: (itemId: string) => BoardOwnership;
   subtitle: string;
 }) {
-  const seaColor = "#0f1b2d";
-  const landFill = "#171717";
-  const landStroke = "#3f3f46";
+  const seaColor = "#0a1320";
+  const landFill = "#24272c";
+  const landStroke = "#676d77";
 
   return (
     <section className="bg-neutral-900 border border-neutral-800 rounded-xl p-3 sm:p-4 space-y-3">
@@ -111,7 +111,7 @@ function SvgMapPanel({
         </div>
         <div className="flex flex-wrap gap-3 text-[11px] text-neutral-500">
           <LegendSwatch color={landFill} border={landStroke} label="Land" />
-          <LegendSwatch color={seaColor} border="#1d4ed8" label="Sea" />
+          <LegendSwatch color={seaColor} border="#334155" label="Sea" />
           <LegendSwatch color="#22c55e" border="#22c55e" label="Claimed" />
         </div>
       </div>
