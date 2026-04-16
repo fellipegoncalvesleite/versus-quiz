@@ -2,119 +2,2057 @@
   "id": "world_countries",
   "label": "World Countries",
   "kind": "map",
-  "prompt": "Name as many countries as you can",
+  "prompt": "Name every country in the world",
   "items": [
-    { "id": "US", "answer": "United States", "aliases": ["USA", "America", "United States of America"], "region": "US" },
-    { "id": "CA", "answer": "Canada", "aliases": [], "region": "CA" },
-    { "id": "MX", "answer": "Mexico", "aliases": [], "region": "MX" },
-    { "id": "BR", "answer": "Brazil", "aliases": ["Brasil"], "region": "BR" },
-    { "id": "AR", "answer": "Argentina", "aliases": [], "region": "AR" },
-    { "id": "CL", "answer": "Chile", "aliases": [], "region": "CL" },
-    { "id": "PE", "answer": "Peru", "aliases": [], "region": "PE" },
-    { "id": "CO", "answer": "Colombia", "aliases": [], "region": "CO" },
-    { "id": "VE", "answer": "Venezuela", "aliases": [], "region": "VE" },
-    { "id": "EC", "answer": "Ecuador", "aliases": [], "region": "EC" },
-    { "id": "BO", "answer": "Bolivia", "aliases": [], "region": "BO" },
-    { "id": "UY", "answer": "Uruguay", "aliases": [], "region": "UY" },
-    { "id": "PY", "answer": "Paraguay", "aliases": [], "region": "PY" },
-    { "id": "GY", "answer": "Guyana", "aliases": [], "region": "GY" },
-    { "id": "SR", "answer": "Suriname", "aliases": [], "region": "SR" },
-    { "id": "CU", "answer": "Cuba", "aliases": [], "region": "CU" },
-    { "id": "DO", "answer": "Dominican Republic", "aliases": [], "region": "DO" },
-    { "id": "HT", "answer": "Haiti", "aliases": [], "region": "HT" },
-    { "id": "JM", "answer": "Jamaica", "aliases": [], "region": "JM" },
-    { "id": "GT", "answer": "Guatemala", "aliases": [], "region": "GT" },
-    { "id": "HN", "answer": "Honduras", "aliases": [], "region": "HN" },
-    { "id": "SV", "answer": "El Salvador", "aliases": [], "region": "SV" },
-    { "id": "NI", "answer": "Nicaragua", "aliases": [], "region": "NI" },
-    { "id": "CR", "answer": "Costa Rica", "aliases": [], "region": "CR" },
-    { "id": "PA", "answer": "Panama", "aliases": [], "region": "PA" },
-    { "id": "GB", "answer": "United Kingdom", "aliases": ["UK", "Britain", "Great Britain"], "region": "GB" },
-    { "id": "IE", "answer": "Ireland", "aliases": [], "region": "IE" },
-    { "id": "FR", "answer": "France", "aliases": [], "region": "FR" },
-    { "id": "DE", "answer": "Germany", "aliases": ["Deutschland"], "region": "DE" },
-    { "id": "ES", "answer": "Spain", "aliases": ["Espana"], "region": "ES" },
-    { "id": "PT", "answer": "Portugal", "aliases": [], "region": "PT" },
-    { "id": "IT", "answer": "Italy", "aliases": ["Italia"], "region": "IT" },
-    { "id": "NL", "answer": "Netherlands", "aliases": ["Holland"], "region": "NL" },
-    { "id": "BE", "answer": "Belgium", "aliases": [], "region": "BE" },
-    { "id": "CH", "answer": "Switzerland", "aliases": [], "region": "CH" },
-    { "id": "AT", "answer": "Austria", "aliases": [], "region": "AT" },
-    { "id": "SE", "answer": "Sweden", "aliases": [], "region": "SE" },
-    { "id": "NO", "answer": "Norway", "aliases": [], "region": "NO" },
-    { "id": "DK", "answer": "Denmark", "aliases": [], "region": "DK" },
-    { "id": "FI", "answer": "Finland", "aliases": [], "region": "FI" },
-    { "id": "IS", "answer": "Iceland", "aliases": [], "region": "IS" },
-    { "id": "PL", "answer": "Poland", "aliases": [], "region": "PL" },
-    { "id": "CZ", "answer": "Czech Republic", "aliases": ["Czechia"], "region": "CZ" },
-    { "id": "SK", "answer": "Slovakia", "aliases": [], "region": "SK" },
-    { "id": "HU", "answer": "Hungary", "aliases": [], "region": "HU" },
-    { "id": "RO", "answer": "Romania", "aliases": [], "region": "RO" },
-    { "id": "BG", "answer": "Bulgaria", "aliases": [], "region": "BG" },
-    { "id": "GR", "answer": "Greece", "aliases": [], "region": "GR" },
-    { "id": "TR", "answer": "Turkey", "aliases": ["Turkiye"], "region": "TR" },
-    { "id": "RU", "answer": "Russia", "aliases": ["Russian Federation"], "region": "RU" },
-    { "id": "UA", "answer": "Ukraine", "aliases": [], "region": "UA" },
-    { "id": "BY", "answer": "Belarus", "aliases": [], "region": "BY" },
-    { "id": "RS", "answer": "Serbia", "aliases": [], "region": "RS" },
-    { "id": "HR", "answer": "Croatia", "aliases": [], "region": "HR" },
-    { "id": "SI", "answer": "Slovenia", "aliases": [], "region": "SI" },
-    { "id": "BA", "answer": "Bosnia and Herzegovina", "aliases": ["Bosnia"], "region": "BA" },
-    { "id": "AL", "answer": "Albania", "aliases": [], "region": "AL" },
-    { "id": "MK", "answer": "North Macedonia", "aliases": ["Macedonia"], "region": "MK" },
-    { "id": "CN", "answer": "China", "aliases": [], "region": "CN" },
-    { "id": "JP", "answer": "Japan", "aliases": [], "region": "JP" },
-    { "id": "KR", "answer": "South Korea", "aliases": ["Korea"], "region": "KR" },
-    { "id": "KP", "answer": "North Korea", "aliases": [], "region": "KP" },
-    { "id": "IN", "answer": "India", "aliases": [], "region": "IN" },
-    { "id": "PK", "answer": "Pakistan", "aliases": [], "region": "PK" },
-    { "id": "BD", "answer": "Bangladesh", "aliases": [], "region": "BD" },
-    { "id": "LK", "answer": "Sri Lanka", "aliases": [], "region": "LK" },
-    { "id": "NP", "answer": "Nepal", "aliases": [], "region": "NP" },
-    { "id": "AF", "answer": "Afghanistan", "aliases": [], "region": "AF" },
-    { "id": "TH", "answer": "Thailand", "aliases": [], "region": "TH" },
-    { "id": "VN", "answer": "Vietnam", "aliases": [], "region": "VN" },
-    { "id": "PH", "answer": "Philippines", "aliases": [], "region": "PH" },
-    { "id": "ID", "answer": "Indonesia", "aliases": [], "region": "ID" },
-    { "id": "MY", "answer": "Malaysia", "aliases": [], "region": "MY" },
-    { "id": "SG", "answer": "Singapore", "aliases": [], "region": "SG" },
-    { "id": "MM", "answer": "Myanmar", "aliases": ["Burma"], "region": "MM" },
-    { "id": "KH", "answer": "Cambodia", "aliases": [], "region": "KH" },
-    { "id": "LA", "answer": "Laos", "aliases": [], "region": "LA" },
-    { "id": "AU", "answer": "Australia", "aliases": [], "region": "AU" },
-    { "id": "NZ", "answer": "New Zealand", "aliases": [], "region": "NZ" },
-    { "id": "ZA", "answer": "South Africa", "aliases": [], "region": "ZA" },
-    { "id": "EG", "answer": "Egypt", "aliases": [], "region": "EG" },
-    { "id": "NG", "answer": "Nigeria", "aliases": [], "region": "NG" },
-    { "id": "KE", "answer": "Kenya", "aliases": [], "region": "KE" },
-    { "id": "ET", "answer": "Ethiopia", "aliases": [], "region": "ET" },
-    { "id": "MA", "answer": "Morocco", "aliases": [], "region": "MA" },
-    { "id": "DZ", "answer": "Algeria", "aliases": [], "region": "DZ" },
-    { "id": "TN", "answer": "Tunisia", "aliases": [], "region": "TN" },
-    { "id": "LY", "answer": "Libya", "aliases": [], "region": "LY" },
-    { "id": "SD", "answer": "Sudan", "aliases": [], "region": "SD" },
-    { "id": "GH", "answer": "Ghana", "aliases": [], "region": "GH" },
-    { "id": "SN", "answer": "Senegal", "aliases": [], "region": "SN" },
-    { "id": "CI", "answer": "Ivory Coast", "aliases": ["Cote d'Ivoire"], "region": "CI" },
-    { "id": "CM", "answer": "Cameroon", "aliases": [], "region": "CM" },
-    { "id": "UG", "answer": "Uganda", "aliases": [], "region": "UG" },
-    { "id": "TZ", "answer": "Tanzania", "aliases": [], "region": "TZ" },
-    { "id": "ZW", "answer": "Zimbabwe", "aliases": [], "region": "ZW" },
-    { "id": "ZM", "answer": "Zambia", "aliases": [], "region": "ZM" },
-    { "id": "AO", "answer": "Angola", "aliases": [], "region": "AO" },
-    { "id": "MZ", "answer": "Mozambique", "aliases": [], "region": "MZ" },
-    { "id": "MG", "answer": "Madagascar", "aliases": [], "region": "MG" },
-    { "id": "SA", "answer": "Saudi Arabia", "aliases": [], "region": "SA" },
-    { "id": "AE", "answer": "United Arab Emirates", "aliases": ["UAE"], "region": "AE" },
-    { "id": "IL", "answer": "Israel", "aliases": [], "region": "IL" },
-    { "id": "JO", "answer": "Jordan", "aliases": [], "region": "JO" },
-    { "id": "LB", "answer": "Lebanon", "aliases": [], "region": "LB" },
-    { "id": "SY", "answer": "Syria", "aliases": [], "region": "SY" },
-    { "id": "IQ", "answer": "Iraq", "aliases": [], "region": "IQ" },
-    { "id": "IR", "answer": "Iran", "aliases": [], "region": "IR" },
-    { "id": "QA", "answer": "Qatar", "aliases": [], "region": "QA" },
-    { "id": "KW", "answer": "Kuwait", "aliases": [], "region": "KW" },
-    { "id": "OM", "answer": "Oman", "aliases": [], "region": "OM" },
-    { "id": "YE", "answer": "Yemen", "aliases": [], "region": "YE" }
+    {
+      "id": "AG",
+      "answer": "Antigua and Barbuda",
+      "aliases": [],
+      "region": "AG",
+      "group": "North America"
+    },
+    {
+      "id": "BS",
+      "answer": "Bahamas",
+      "aliases": [
+        "Commonwealth of the Bahamas"
+      ],
+      "region": "BS",
+      "group": "North America"
+    },
+    {
+      "id": "BB",
+      "answer": "Barbados",
+      "aliases": [],
+      "region": "BB",
+      "group": "North America"
+    },
+    {
+      "id": "BZ",
+      "answer": "Belize",
+      "aliases": [],
+      "region": "BZ",
+      "group": "North America"
+    },
+    {
+      "id": "CA",
+      "answer": "Canada",
+      "aliases": [],
+      "region": "CA",
+      "group": "North America"
+    },
+    {
+      "id": "CR",
+      "answer": "Costa Rica",
+      "aliases": [
+        "Republic of Costa Rica",
+        "República de Costa Rica"
+      ],
+      "region": "CR",
+      "group": "North America"
+    },
+    {
+      "id": "CU",
+      "answer": "Cuba",
+      "aliases": [
+        "Republic of Cuba",
+        "República de Cuba"
+      ],
+      "region": "CU",
+      "group": "North America"
+    },
+    {
+      "id": "DM",
+      "answer": "Dominica",
+      "aliases": [
+        "Commonwealth of Dominica",
+        "Dominique",
+        "Wai‘tu kubuli"
+      ],
+      "region": "DM",
+      "group": "North America"
+    },
+    {
+      "id": "DO",
+      "answer": "Dominican Republic",
+      "aliases": [],
+      "region": "DO",
+      "group": "North America"
+    },
+    {
+      "id": "SV",
+      "answer": "El Salvador",
+      "aliases": [
+        "Republic of El Salvador",
+        "República de El Salvador"
+      ],
+      "region": "SV",
+      "group": "North America"
+    },
+    {
+      "id": "GD",
+      "answer": "Grenada",
+      "aliases": [],
+      "region": "GD",
+      "group": "North America"
+    },
+    {
+      "id": "GT",
+      "answer": "Guatemala",
+      "aliases": [
+        "Republic of Guatemala"
+      ],
+      "region": "GT",
+      "group": "North America"
+    },
+    {
+      "id": "HT",
+      "answer": "Haiti",
+      "aliases": [
+        "Repiblik Ayiti",
+        "Republic of Haiti",
+        "République d'Haïti"
+      ],
+      "region": "HT",
+      "group": "North America"
+    },
+    {
+      "id": "HN",
+      "answer": "Honduras",
+      "aliases": [
+        "Republic of Honduras",
+        "República de Honduras"
+      ],
+      "region": "HN",
+      "group": "North America"
+    },
+    {
+      "id": "JM",
+      "answer": "Jamaica",
+      "aliases": [],
+      "region": "JM",
+      "group": "North America"
+    },
+    {
+      "id": "MX",
+      "answer": "Mexico",
+      "aliases": [
+        "Estados Unidos Mexicanos",
+        "Mexicanos",
+        "United Mexican States"
+      ],
+      "region": "MX",
+      "group": "North America"
+    },
+    {
+      "id": "NI",
+      "answer": "Nicaragua",
+      "aliases": [
+        "Republic of Nicaragua",
+        "República de Nicaragua"
+      ],
+      "region": "NI",
+      "group": "North America"
+    },
+    {
+      "id": "PA",
+      "answer": "Panama",
+      "aliases": [
+        "Republic of Panama",
+        "República de Panamá"
+      ],
+      "region": "PA",
+      "group": "North America"
+    },
+    {
+      "id": "KN",
+      "answer": "Saint Kitts and Nevis",
+      "aliases": [
+        "Federation of Saint Christopher and Nevis"
+      ],
+      "region": "KN",
+      "group": "North America"
+    },
+    {
+      "id": "LC",
+      "answer": "Saint Lucia",
+      "aliases": [],
+      "region": "LC",
+      "group": "North America"
+    },
+    {
+      "id": "VC",
+      "answer": "Saint Vincent and the Grenadines",
+      "aliases": [],
+      "region": "VC",
+      "group": "North America"
+    },
+    {
+      "id": "TT",
+      "answer": "Trinidad and Tobago",
+      "aliases": [
+        "Republic of Trinidad and Tobago"
+      ],
+      "region": "TT",
+      "group": "North America"
+    },
+    {
+      "id": "US",
+      "answer": "United States",
+      "aliases": [
+        "America",
+        "United States of America"
+      ],
+      "region": "US",
+      "group": "North America"
+    },
+    {
+      "id": "AR",
+      "answer": "Argentina",
+      "aliases": [
+        "Argentine Republic",
+        "República Argentina"
+      ],
+      "region": "AR",
+      "group": "South America"
+    },
+    {
+      "id": "BO",
+      "answer": "Bolivia",
+      "aliases": [
+        "Bolivia, Plurinational State of",
+        "Buliwya",
+        "Buliwya Mamallaqta",
+        "Estado Plurinacional de Bolivia",
+        "Plurinational State of Bolivia",
+        "Tetã Volívia",
+        "Wuliwya",
+        "Wuliwya Suyu"
+      ],
+      "region": "BO",
+      "group": "South America"
+    },
+    {
+      "id": "BR",
+      "answer": "Brazil",
+      "aliases": [
+        "Brasil",
+        "Federative Republic of Brazil",
+        "República Federativa do Brasil"
+      ],
+      "region": "BR",
+      "group": "South America"
+    },
+    {
+      "id": "CL",
+      "answer": "Chile",
+      "aliases": [
+        "Republic of Chile",
+        "República de Chile"
+      ],
+      "region": "CL",
+      "group": "South America"
+    },
+    {
+      "id": "CO",
+      "answer": "Colombia",
+      "aliases": [
+        "Republic of Colombia",
+        "República de Colombia"
+      ],
+      "region": "CO",
+      "group": "South America"
+    },
+    {
+      "id": "EC",
+      "answer": "Ecuador",
+      "aliases": [
+        "Republic of Ecuador",
+        "República del Ecuador"
+      ],
+      "region": "EC",
+      "group": "South America"
+    },
+    {
+      "id": "GY",
+      "answer": "Guyana",
+      "aliases": [
+        "Co-operative Republic of Guyana"
+      ],
+      "region": "GY",
+      "group": "South America"
+    },
+    {
+      "id": "PY",
+      "answer": "Paraguay",
+      "aliases": [
+        "Republic of Paraguay",
+        "República del Paraguay",
+        "Tetã Paraguái"
+      ],
+      "region": "PY",
+      "group": "South America"
+    },
+    {
+      "id": "PE",
+      "answer": "Peru",
+      "aliases": [
+        "Republic of Peru",
+        "República del Perú"
+      ],
+      "region": "PE",
+      "group": "South America"
+    },
+    {
+      "id": "SR",
+      "answer": "Suriname",
+      "aliases": [
+        "Republic of Suriname",
+        "Republiek Suriname",
+        "Sarnam",
+        "Sranangron"
+      ],
+      "region": "SR",
+      "group": "South America"
+    },
+    {
+      "id": "UY",
+      "answer": "Uruguay",
+      "aliases": [
+        "Oriental Republic of Uruguay",
+        "República Oriental del Uruguay"
+      ],
+      "region": "UY",
+      "group": "South America"
+    },
+    {
+      "id": "VE",
+      "answer": "Venezuela",
+      "aliases": [
+        "Bolivarian Republic of Venezuela",
+        "República Bolivariana de Venezuela",
+        "Venezuela, Bolivarian Republic of"
+      ],
+      "region": "VE",
+      "group": "South America"
+    },
+    {
+      "id": "AL",
+      "answer": "Albania",
+      "aliases": [
+        "Republic of Albania",
+        "Shqipëri",
+        "Shqipëria",
+        "Shqipnia"
+      ],
+      "region": "AL",
+      "group": "Europe"
+    },
+    {
+      "id": "AD",
+      "answer": "Andorra",
+      "aliases": [
+        "Principality of Andorra",
+        "Principat d'Andorra"
+      ],
+      "region": "AD",
+      "group": "Europe"
+    },
+    {
+      "id": "AT",
+      "answer": "Austria",
+      "aliases": [
+        "Oesterreich",
+        "Osterreich",
+        "Republic of Austria"
+      ],
+      "region": "AT",
+      "group": "Europe"
+    },
+    {
+      "id": "BY",
+      "answer": "Belarus",
+      "aliases": [
+        "Bielaruś",
+        "Republic of Belarus",
+        "Белоруссия",
+        "Республика Белоруссия"
+      ],
+      "region": "BY",
+      "group": "Europe"
+    },
+    {
+      "id": "BE",
+      "answer": "Belgium",
+      "aliases": [
+        "Belgie",
+        "België",
+        "Belgien",
+        "Belgique",
+        "Kingdom of Belgium",
+        "Königreich Belgien",
+        "Koninkrijk België",
+        "Royaume de Belgique"
+      ],
+      "region": "BE",
+      "group": "Europe"
+    },
+    {
+      "id": "BA",
+      "answer": "Bosnia and Herzegovina",
+      "aliases": [
+        "Bosnia-Herzegovina",
+        "Босна и Херцеговина"
+      ],
+      "region": "BA",
+      "group": "Europe"
+    },
+    {
+      "id": "BG",
+      "answer": "Bulgaria",
+      "aliases": [
+        "Republic of Bulgaria",
+        "Република България"
+      ],
+      "region": "BG",
+      "group": "Europe"
+    },
+    {
+      "id": "HR",
+      "answer": "Croatia",
+      "aliases": [
+        "Hrvatska",
+        "Republic of Croatia",
+        "Republika Hrvatska"
+      ],
+      "region": "HR",
+      "group": "Europe"
+    },
+    {
+      "id": "CY",
+      "answer": "Cyprus",
+      "aliases": [
+        "Kıbrıs",
+        "Kıbrıs Cumhuriyeti",
+        "Kýpros",
+        "Republic of Cyprus",
+        "Κυπριακή Δημοκρατία"
+      ],
+      "region": "CY",
+      "group": "Europe"
+    },
+    {
+      "id": "CZ",
+      "answer": "Czechia",
+      "aliases": [
+        "Česká republika",
+        "Česko",
+        "Czech Republic"
+      ],
+      "region": "CZ",
+      "group": "Europe"
+    },
+    {
+      "id": "DK",
+      "answer": "Denmark",
+      "aliases": [
+        "Danmark",
+        "Kingdom of Denmark",
+        "Kongeriget Danmark"
+      ],
+      "region": "DK",
+      "group": "Europe"
+    },
+    {
+      "id": "EE",
+      "answer": "Estonia",
+      "aliases": [
+        "Eesti",
+        "Eesti Vabariik",
+        "Republic of Estonia"
+      ],
+      "region": "EE",
+      "group": "Europe"
+    },
+    {
+      "id": "FI",
+      "answer": "Finland",
+      "aliases": [
+        "Republic of Finland",
+        "Republiken Finland",
+        "Suomen tasavalta",
+        "Suomi"
+      ],
+      "region": "FI",
+      "group": "Europe"
+    },
+    {
+      "id": "FR",
+      "answer": "France",
+      "aliases": [
+        "French Republic",
+        "République française"
+      ],
+      "region": "FR",
+      "group": "Europe"
+    },
+    {
+      "id": "DE",
+      "answer": "Germany",
+      "aliases": [
+        "Bundesrepublik Deutschland",
+        "Federal Republic of Germany"
+      ],
+      "region": "DE",
+      "group": "Europe"
+    },
+    {
+      "id": "GR",
+      "answer": "Greece",
+      "aliases": [
+        "Elláda",
+        "Hellenic Republic",
+        "Ελληνική Δημοκρατία"
+      ],
+      "region": "GR",
+      "group": "Europe"
+    },
+    {
+      "id": "HU",
+      "answer": "Hungary",
+      "aliases": [],
+      "region": "HU",
+      "group": "Europe"
+    },
+    {
+      "id": "IS",
+      "answer": "Iceland",
+      "aliases": [
+        "Island",
+        "Lýðveldið Ísland",
+        "Republic of Iceland"
+      ],
+      "region": "IS",
+      "group": "Europe"
+    },
+    {
+      "id": "IE",
+      "answer": "Ireland",
+      "aliases": [
+        "Éire",
+        "Poblacht na hÉireann",
+        "Republic of Ireland"
+      ],
+      "region": "IE",
+      "group": "Europe"
+    },
+    {
+      "id": "IT",
+      "answer": "Italy",
+      "aliases": [
+        "Italian Republic",
+        "Repubblica italiana"
+      ],
+      "region": "IT",
+      "group": "Europe"
+    },
+    {
+      "id": "XK",
+      "answer": "Kosovo",
+      "aliases": [
+        "Republic of Kosovo",
+        "Република Косово"
+      ],
+      "region": "XK",
+      "group": "Europe"
+    },
+    {
+      "id": "LV",
+      "answer": "Latvia",
+      "aliases": [
+        "Latvijas Republika",
+        "Republic of Latvia"
+      ],
+      "region": "LV",
+      "group": "Europe"
+    },
+    {
+      "id": "LI",
+      "answer": "Liechtenstein",
+      "aliases": [
+        "Fürstentum Liechtenstein",
+        "Principality of Liechtenstein"
+      ],
+      "region": "LI",
+      "group": "Europe"
+    },
+    {
+      "id": "LT",
+      "answer": "Lithuania",
+      "aliases": [
+        "Lietuvos Respublika",
+        "Republic of Lithuania"
+      ],
+      "region": "LT",
+      "group": "Europe"
+    },
+    {
+      "id": "LU",
+      "answer": "Luxembourg",
+      "aliases": [
+        "Grand Duchy of Luxembourg",
+        "Grand-Duché de Luxembourg",
+        "Großherzogtum Luxemburg",
+        "Groussherzogtum Lëtzebuerg"
+      ],
+      "region": "LU",
+      "group": "Europe"
+    },
+    {
+      "id": "MT",
+      "answer": "Malta",
+      "aliases": [
+        "Repubblika ta' Malta",
+        "Republic of Malta"
+      ],
+      "region": "MT",
+      "group": "Europe"
+    },
+    {
+      "id": "MD",
+      "answer": "Moldova",
+      "aliases": [
+        "Moldova, Republic of",
+        "Republic of Moldova",
+        "Republica Moldova"
+      ],
+      "region": "MD",
+      "group": "Europe"
+    },
+    {
+      "id": "MC",
+      "answer": "Monaco",
+      "aliases": [
+        "Principality of Monaco",
+        "Principauté de Monaco"
+      ],
+      "region": "MC",
+      "group": "Europe"
+    },
+    {
+      "id": "ME",
+      "answer": "Montenegro",
+      "aliases": [
+        "Crna Gora"
+      ],
+      "region": "ME",
+      "group": "Europe"
+    },
+    {
+      "id": "NL",
+      "answer": "Netherlands",
+      "aliases": [
+        "Holland",
+        "Kingdom of the Netherlands",
+        "Nederland",
+        "The Netherlands"
+      ],
+      "region": "NL",
+      "group": "Europe"
+    },
+    {
+      "id": "MK",
+      "answer": "North Macedonia",
+      "aliases": [
+        "Macedonia",
+        "Macedonia, The Former Yugoslav Republic of",
+        "Republic of North Macedonia",
+        "The former Yugoslav Republic of Macedonia",
+        "Република Северна Македонија"
+      ],
+      "region": "MK",
+      "group": "Europe"
+    },
+    {
+      "id": "NO",
+      "answer": "Norway",
+      "aliases": [
+        "Kingdom of Norway",
+        "Kongeriket Noreg",
+        "Kongeriket Norge",
+        "Noreg",
+        "Norge"
+      ],
+      "region": "NO",
+      "group": "Europe"
+    },
+    {
+      "id": "PL",
+      "answer": "Poland",
+      "aliases": [
+        "Republic of Poland",
+        "Rzeczpospolita Polska"
+      ],
+      "region": "PL",
+      "group": "Europe"
+    },
+    {
+      "id": "PT",
+      "answer": "Portugal",
+      "aliases": [
+        "Portuguesa",
+        "Portuguese Republic",
+        "República Portuguesa"
+      ],
+      "region": "PT",
+      "group": "Europe"
+    },
+    {
+      "id": "RO",
+      "answer": "Romania",
+      "aliases": [
+        "Roumania",
+        "Rumania"
+      ],
+      "region": "RO",
+      "group": "Europe"
+    },
+    {
+      "id": "RU",
+      "answer": "Russia",
+      "aliases": [
+        "Russian Federation",
+        "Российская Федерация"
+      ],
+      "region": "RU",
+      "group": "Europe"
+    },
+    {
+      "id": "SM",
+      "answer": "San Marino",
+      "aliases": [
+        "Most Serene Republic of San Marino",
+        "Repubblica di San Marino",
+        "Republic of San Marino"
+      ],
+      "region": "SM",
+      "group": "Europe"
+    },
+    {
+      "id": "RS",
+      "answer": "Serbia",
+      "aliases": [
+        "Republic of Serbia",
+        "Republika Srbija",
+        "Srbija",
+        "Република Србија",
+        "Србија"
+      ],
+      "region": "RS",
+      "group": "Europe"
+    },
+    {
+      "id": "SK",
+      "answer": "Slovakia",
+      "aliases": [
+        "Slovak Republic",
+        "Slovenská republika"
+      ],
+      "region": "SK",
+      "group": "Europe"
+    },
+    {
+      "id": "SI",
+      "answer": "Slovenia",
+      "aliases": [
+        "Republic of Slovenia",
+        "Republika Slovenija"
+      ],
+      "region": "SI",
+      "group": "Europe"
+    },
+    {
+      "id": "ES",
+      "answer": "Spain",
+      "aliases": [
+        "Kingdom of Spain",
+        "Reino de España"
+      ],
+      "region": "ES",
+      "group": "Europe"
+    },
+    {
+      "id": "SE",
+      "answer": "Sweden",
+      "aliases": [
+        "Kingdom of Sweden",
+        "Konungariket Sverige"
+      ],
+      "region": "SE",
+      "group": "Europe"
+    },
+    {
+      "id": "CH",
+      "answer": "Switzerland",
+      "aliases": [
+        "Schweiz",
+        "Suisse",
+        "Svizra",
+        "Svizzera",
+        "Swiss Confederation"
+      ],
+      "region": "CH",
+      "group": "Europe"
+    },
+    {
+      "id": "UA",
+      "answer": "Ukraine",
+      "aliases": [
+        "Ukrayina"
+      ],
+      "region": "UA",
+      "group": "Europe"
+    },
+    {
+      "id": "GB",
+      "answer": "United Kingdom",
+      "aliases": [
+        "Britain",
+        "Great Britain",
+        "United Kingdom of Great Britain and Northern Ireland"
+      ],
+      "region": "GB",
+      "group": "Europe"
+    },
+    {
+      "id": "VA",
+      "answer": "Vatican City",
+      "aliases": [
+        "Holy See",
+        "Holy See (Vatican City State)",
+        "Stato della Città del Vaticano",
+        "Vatican",
+        "Vatican City State"
+      ],
+      "region": "VA",
+      "group": "Europe"
+    },
+    {
+      "id": "DZ",
+      "answer": "Algeria",
+      "aliases": [
+        "Algérie",
+        "Dzayer",
+        "People's Democratic Republic of Algeria"
+      ],
+      "region": "DZ",
+      "group": "Africa"
+    },
+    {
+      "id": "AO",
+      "answer": "Angola",
+      "aliases": [
+        "Republic of Angola",
+        "República de Angola",
+        "ʁɛpublika de an'ɡɔla"
+      ],
+      "region": "AO",
+      "group": "Africa"
+    },
+    {
+      "id": "BJ",
+      "answer": "Benin",
+      "aliases": [
+        "Republic of Benin",
+        "République du Bénin"
+      ],
+      "region": "BJ",
+      "group": "Africa"
+    },
+    {
+      "id": "BW",
+      "answer": "Botswana",
+      "aliases": [
+        "Lefatshe la Botswana",
+        "Republic of Botswana"
+      ],
+      "region": "BW",
+      "group": "Africa"
+    },
+    {
+      "id": "BF",
+      "answer": "Burkina Faso",
+      "aliases": [],
+      "region": "BF",
+      "group": "Africa"
+    },
+    {
+      "id": "BI",
+      "answer": "Burundi",
+      "aliases": [
+        "Republic of Burundi",
+        "Republika y'Uburundi",
+        "République du Burundi"
+      ],
+      "region": "BI",
+      "group": "Africa"
+    },
+    {
+      "id": "CM",
+      "answer": "Cameroon",
+      "aliases": [
+        "Republic of Cameroon",
+        "République du Cameroun"
+      ],
+      "region": "CM",
+      "group": "Africa"
+    },
+    {
+      "id": "CV",
+      "answer": "Cape Verde",
+      "aliases": [
+        "Cabo Verde",
+        "Republic of Cabo Verde",
+        "República de Cabo Verde"
+      ],
+      "region": "CV",
+      "group": "Africa"
+    },
+    {
+      "id": "CF",
+      "answer": "Central African Republic",
+      "aliases": [
+        "République centrafricaine"
+      ],
+      "region": "CF",
+      "group": "Africa"
+    },
+    {
+      "id": "TD",
+      "answer": "Chad",
+      "aliases": [
+        "Republic of Chad",
+        "République du Tchad",
+        "Tchad"
+      ],
+      "region": "TD",
+      "group": "Africa"
+    },
+    {
+      "id": "KM",
+      "answer": "Comoros",
+      "aliases": [
+        "al-Ittiḥād al-Qumurī",
+        "Udzima wa Komori",
+        "Union des Comores",
+        "Union of the Comoros"
+      ],
+      "region": "KM",
+      "group": "Africa"
+    },
+    {
+      "id": "DJ",
+      "answer": "Djibouti",
+      "aliases": [
+        "Gabuuti",
+        "Gabuutih Ummuuno",
+        "Jabuuti",
+        "Jamhuuriyadda Jabuuti",
+        "Republic of Djibouti",
+        "République de Djibouti"
+      ],
+      "region": "DJ",
+      "group": "Africa"
+    },
+    {
+      "id": "CD",
+      "answer": "DR Congo",
+      "aliases": [
+        "Congo-Kinshasa",
+        "Congo, the Democratic Republic of the",
+        "Democratic Republic of Congo",
+        "Democratic Republic of the Congo"
+      ],
+      "region": "CD",
+      "group": "Africa"
+    },
+    {
+      "id": "EG",
+      "answer": "Egypt",
+      "aliases": [
+        "Arab Republic of Egypt"
+      ],
+      "region": "EG",
+      "group": "Africa"
+    },
+    {
+      "id": "GQ",
+      "answer": "Equatorial Guinea",
+      "aliases": [
+        "Republic of Equatorial Guinea",
+        "República da Guiné Equatorial",
+        "República de Guinea Ecuatorial",
+        "République de Guinée équatoriale"
+      ],
+      "region": "GQ",
+      "group": "Africa"
+    },
+    {
+      "id": "ER",
+      "answer": "Eritrea",
+      "aliases": [
+        "Dawlat Iritriyá",
+        "Iritriyā",
+        "State of Eritrea",
+        "ʾErtrā",
+        "ሃገረ ኤርትራ"
+      ],
+      "region": "ER",
+      "group": "Africa"
+    },
+    {
+      "id": "SZ",
+      "answer": "Eswatini",
+      "aliases": [
+        "Kingdom of Eswatini",
+        "Ngwane",
+        "Swatini",
+        "Swaziland",
+        "Umbuso weSwatini",
+        "weSwatini"
+      ],
+      "region": "SZ",
+      "group": "Africa"
+    },
+    {
+      "id": "ET",
+      "answer": "Ethiopia",
+      "aliases": [
+        "Federal Democratic Republic of Ethiopia",
+        "ʾĪtyōṗṗyā",
+        "የኢትዮጵያ ፌዴራላዊ ዲሞክራሲያዊ ሪፐብሊክ"
+      ],
+      "region": "ET",
+      "group": "Africa"
+    },
+    {
+      "id": "GA",
+      "answer": "Gabon",
+      "aliases": [
+        "Gabonese Republic",
+        "République Gabonaise"
+      ],
+      "region": "GA",
+      "group": "Africa"
+    },
+    {
+      "id": "GM",
+      "answer": "Gambia",
+      "aliases": [
+        "Republic of the Gambia"
+      ],
+      "region": "GM",
+      "group": "Africa"
+    },
+    {
+      "id": "GH",
+      "answer": "Ghana",
+      "aliases": [
+        "Republic of Ghana"
+      ],
+      "region": "GH",
+      "group": "Africa"
+    },
+    {
+      "id": "GN",
+      "answer": "Guinea",
+      "aliases": [
+        "Republic of Guinea",
+        "République de Guinée"
+      ],
+      "region": "GN",
+      "group": "Africa"
+    },
+    {
+      "id": "GW",
+      "answer": "Guinea-Bissau",
+      "aliases": [
+        "Republic of Guinea-Bissau",
+        "República da Guiné-Bissau"
+      ],
+      "region": "GW",
+      "group": "Africa"
+    },
+    {
+      "id": "CI",
+      "answer": "Ivory Coast",
+      "aliases": [
+        "Cote d'Ivoire",
+        "Côte d'Ivoire",
+        "Republic of Côte d'Ivoire",
+        "République de Côte d'Ivoire"
+      ],
+      "region": "CI",
+      "group": "Africa"
+    },
+    {
+      "id": "KE",
+      "answer": "Kenya",
+      "aliases": [
+        "Jamhuri ya Kenya",
+        "Republic of Kenya"
+      ],
+      "region": "KE",
+      "group": "Africa"
+    },
+    {
+      "id": "LS",
+      "answer": "Lesotho",
+      "aliases": [
+        "Kingdom of Lesotho",
+        "Muso oa Lesotho"
+      ],
+      "region": "LS",
+      "group": "Africa"
+    },
+    {
+      "id": "LR",
+      "answer": "Liberia",
+      "aliases": [
+        "Republic of Liberia"
+      ],
+      "region": "LR",
+      "group": "Africa"
+    },
+    {
+      "id": "LY",
+      "answer": "Libya",
+      "aliases": [
+        "Dawlat Libya",
+        "State of Libya"
+      ],
+      "region": "LY",
+      "group": "Africa"
+    },
+    {
+      "id": "MG",
+      "answer": "Madagascar",
+      "aliases": [
+        "Repoblikan'i Madagasikara",
+        "Republic of Madagascar",
+        "République de Madagascar"
+      ],
+      "region": "MG",
+      "group": "Africa"
+    },
+    {
+      "id": "MW",
+      "answer": "Malawi",
+      "aliases": [
+        "Republic of Malawi"
+      ],
+      "region": "MW",
+      "group": "Africa"
+    },
+    {
+      "id": "ML",
+      "answer": "Mali",
+      "aliases": [
+        "Republic of Mali",
+        "République du Mali"
+      ],
+      "region": "ML",
+      "group": "Africa"
+    },
+    {
+      "id": "MR",
+      "answer": "Mauritania",
+      "aliases": [
+        "al-Jumhūriyyah al-ʾIslāmiyyah al-Mūrītāniyyah",
+        "Islamic Republic of Mauritania"
+      ],
+      "region": "MR",
+      "group": "Africa"
+    },
+    {
+      "id": "MU",
+      "answer": "Mauritius",
+      "aliases": [
+        "Republic of Mauritius",
+        "République de Maurice"
+      ],
+      "region": "MU",
+      "group": "Africa"
+    },
+    {
+      "id": "MA",
+      "answer": "Morocco",
+      "aliases": [
+        "Al-Mamlakah al-Maġribiyah",
+        "Kingdom of Morocco"
+      ],
+      "region": "MA",
+      "group": "Africa"
+    },
+    {
+      "id": "MZ",
+      "answer": "Mozambique",
+      "aliases": [
+        "Republic of Mozambique",
+        "República de Moçambique"
+      ],
+      "region": "MZ",
+      "group": "Africa"
+    },
+    {
+      "id": "NA",
+      "answer": "Namibia",
+      "aliases": [
+        "Namibië",
+        "Republic of Namibia"
+      ],
+      "region": "NA",
+      "group": "Africa"
+    },
+    {
+      "id": "NE",
+      "answer": "Niger",
+      "aliases": [
+        "Nijar",
+        "Republic of Niger"
+      ],
+      "region": "NE",
+      "group": "Africa"
+    },
+    {
+      "id": "NG",
+      "answer": "Nigeria",
+      "aliases": [
+        "Federal Republic of Nigeria",
+        "Naíjíríà",
+        "Nijeriya"
+      ],
+      "region": "NG",
+      "group": "Africa"
+    },
+    {
+      "id": "CG",
+      "answer": "Republic of the Congo",
+      "aliases": [
+        "Congo",
+        "Congo Republic",
+        "Congo-Brazzaville"
+      ],
+      "region": "CG",
+      "group": "Africa"
+    },
+    {
+      "id": "RW",
+      "answer": "Rwanda",
+      "aliases": [
+        "Republic of Rwanda",
+        "République du Rwanda",
+        "Repubulika y'u Rwanda"
+      ],
+      "region": "RW",
+      "group": "Africa"
+    },
+    {
+      "id": "ST",
+      "answer": "São Tomé and Príncipe",
+      "aliases": [
+        "Democratic Republic of São Tomé and Príncipe",
+        "República Democrática de São Tomé e Príncipe"
+      ],
+      "region": "ST",
+      "group": "Africa"
+    },
+    {
+      "id": "SN",
+      "answer": "Senegal",
+      "aliases": [
+        "Republic of Senegal",
+        "République du Sénégal"
+      ],
+      "region": "SN",
+      "group": "Africa"
+    },
+    {
+      "id": "SC",
+      "answer": "Seychelles",
+      "aliases": [
+        "Repiblik Sesel",
+        "Republic of Seychelles",
+        "République des Seychelles"
+      ],
+      "region": "SC",
+      "group": "Africa"
+    },
+    {
+      "id": "SL",
+      "answer": "Sierra Leone",
+      "aliases": [
+        "Republic of Sierra Leone"
+      ],
+      "region": "SL",
+      "group": "Africa"
+    },
+    {
+      "id": "SO",
+      "answer": "Somalia",
+      "aliases": [
+        "aṣ-Ṣūmāl",
+        "Federal Republic of Somalia",
+        "Jamhuuriyadda Federaalka Soomaaliya",
+        "Jumhūriyyat aṣ-Ṣūmāl al-Fiderāliyya"
+      ],
+      "region": "SO",
+      "group": "Africa"
+    },
+    {
+      "id": "ZA",
+      "answer": "South Africa",
+      "aliases": [
+        "Republic of South Africa",
+        "Suid-Afrika"
+      ],
+      "region": "ZA",
+      "group": "Africa"
+    },
+    {
+      "id": "SS",
+      "answer": "South Sudan",
+      "aliases": [
+        "Republic of South Sudan"
+      ],
+      "region": "SS",
+      "group": "Africa"
+    },
+    {
+      "id": "SD",
+      "answer": "Sudan",
+      "aliases": [
+        "Jumhūrīyat as-Sūdān",
+        "Republic of the Sudan"
+      ],
+      "region": "SD",
+      "group": "Africa"
+    },
+    {
+      "id": "TZ",
+      "answer": "Tanzania",
+      "aliases": [
+        "Jamhuri ya Muungano wa Tanzania",
+        "Tanzania, United Republic of",
+        "United Republic of Tanzania"
+      ],
+      "region": "TZ",
+      "group": "Africa"
+    },
+    {
+      "id": "TG",
+      "answer": "Togo",
+      "aliases": [
+        "République Togolaise",
+        "Togolese",
+        "Togolese Republic"
+      ],
+      "region": "TG",
+      "group": "Africa"
+    },
+    {
+      "id": "TN",
+      "answer": "Tunisia",
+      "aliases": [
+        "al-Jumhūriyyah at-Tūnisiyyah",
+        "Republic of Tunisia",
+        "Tunisian Republic"
+      ],
+      "region": "TN",
+      "group": "Africa"
+    },
+    {
+      "id": "UG",
+      "answer": "Uganda",
+      "aliases": [
+        "Jamhuri ya Uganda",
+        "Republic of Uganda"
+      ],
+      "region": "UG",
+      "group": "Africa"
+    },
+    {
+      "id": "ZM",
+      "answer": "Zambia",
+      "aliases": [
+        "Republic of Zambia"
+      ],
+      "region": "ZM",
+      "group": "Africa"
+    },
+    {
+      "id": "ZW",
+      "answer": "Zimbabwe",
+      "aliases": [
+        "Republic of Zimbabwe"
+      ],
+      "region": "ZW",
+      "group": "Africa"
+    },
+    {
+      "id": "AF",
+      "answer": "Afghanistan",
+      "aliases": [
+        "Afġānistān",
+        "Islamic Republic of Afghanistan"
+      ],
+      "region": "AF",
+      "group": "Asia"
+    },
+    {
+      "id": "AM",
+      "answer": "Armenia",
+      "aliases": [
+        "Hayastan",
+        "Republic of Armenia",
+        "Հայաստանի Հանրապետություն"
+      ],
+      "region": "AM",
+      "group": "Asia"
+    },
+    {
+      "id": "AZ",
+      "answer": "Azerbaijan",
+      "aliases": [
+        "Azərbaycan Respublikası",
+        "Republic of Azerbaijan"
+      ],
+      "region": "AZ",
+      "group": "Asia"
+    },
+    {
+      "id": "BH",
+      "answer": "Bahrain",
+      "aliases": [
+        "Kingdom of Bahrain",
+        "Mamlakat al-Baḥrayn"
+      ],
+      "region": "BH",
+      "group": "Asia"
+    },
+    {
+      "id": "BD",
+      "answer": "Bangladesh",
+      "aliases": [
+        "Gônôprôjatôntri Bangladesh",
+        "People's Republic of Bangladesh"
+      ],
+      "region": "BD",
+      "group": "Asia"
+    },
+    {
+      "id": "BT",
+      "answer": "Bhutan",
+      "aliases": [
+        "Kingdom of Bhutan"
+      ],
+      "region": "BT",
+      "group": "Asia"
+    },
+    {
+      "id": "BN",
+      "answer": "Brunei",
+      "aliases": [
+        "Brunei Darussalam",
+        "Nation of Brunei",
+        "Nation of Brunei, Abode of Peace",
+        "the Abode of Peace"
+      ],
+      "region": "BN",
+      "group": "Asia"
+    },
+    {
+      "id": "KH",
+      "answer": "Cambodia",
+      "aliases": [
+        "Kingdom of Cambodia"
+      ],
+      "region": "KH",
+      "group": "Asia"
+    },
+    {
+      "id": "CN",
+      "answer": "China",
+      "aliases": [
+        "People's Republic of China",
+        "Zhongguo",
+        "Zhōngguó",
+        "Zhonghua",
+        "Zhōnghuá Rénmín Gònghéguó",
+        "中华人民共和国"
+      ],
+      "region": "CN",
+      "group": "Asia"
+    },
+    {
+      "id": "GE",
+      "answer": "Georgia",
+      "aliases": [
+        "Sakartvelo"
+      ],
+      "region": "GE",
+      "group": "Asia"
+    },
+    {
+      "id": "IN",
+      "answer": "India",
+      "aliases": [
+        "Bhārat",
+        "Bharat Ganrajya",
+        "Republic of India",
+        "இந்தியா"
+      ],
+      "region": "IN",
+      "group": "Asia"
+    },
+    {
+      "id": "ID",
+      "answer": "Indonesia",
+      "aliases": [
+        "Republic of Indonesia",
+        "Republik Indonesia"
+      ],
+      "region": "ID",
+      "group": "Asia"
+    },
+    {
+      "id": "IR",
+      "answer": "Iran",
+      "aliases": [
+        "Iran, Islamic Republic of",
+        "Islamic Republic of Iran",
+        "Jomhuri-ye Eslāmi-ye Irān"
+      ],
+      "region": "IR",
+      "group": "Asia"
+    },
+    {
+      "id": "IQ",
+      "answer": "Iraq",
+      "aliases": [
+        "Jumhūriyyat al-‘Irāq",
+        "Republic of Iraq"
+      ],
+      "region": "IQ",
+      "group": "Asia"
+    },
+    {
+      "id": "IL",
+      "answer": "Israel",
+      "aliases": [
+        "Medīnat Yisrā'el",
+        "State of Israel"
+      ],
+      "region": "IL",
+      "group": "Asia"
+    },
+    {
+      "id": "JP",
+      "answer": "Japan",
+      "aliases": [
+        "Nihon",
+        "Nippon"
+      ],
+      "region": "JP",
+      "group": "Asia"
+    },
+    {
+      "id": "JO",
+      "answer": "Jordan",
+      "aliases": [
+        "al-Mamlakah al-Urdunīyah al-Hāshimīyah",
+        "Hashemite Kingdom of Jordan"
+      ],
+      "region": "JO",
+      "group": "Asia"
+    },
+    {
+      "id": "KZ",
+      "answer": "Kazakhstan",
+      "aliases": [
+        "Qazaqstan",
+        "Qazaqstan Respublïkası",
+        "Republic of Kazakhstan",
+        "Respublika Kazakhstan",
+        "Казахстан",
+        "Қазақстан Республикасы",
+        "Республика Казахстан"
+      ],
+      "region": "KZ",
+      "group": "Asia"
+    },
+    {
+      "id": "KW",
+      "answer": "Kuwait",
+      "aliases": [
+        "Dawlat al-Kuwait",
+        "State of Kuwait"
+      ],
+      "region": "KW",
+      "group": "Asia"
+    },
+    {
+      "id": "KG",
+      "answer": "Kyrgyzstan",
+      "aliases": [
+        "Kyrgyz Republic",
+        "Kyrgyz Respublikasy",
+        "Киргизия",
+        "Кыргыз Республикасы"
+      ],
+      "region": "KG",
+      "group": "Asia"
+    },
+    {
+      "id": "LA",
+      "answer": "Laos",
+      "aliases": [
+        "Lao",
+        "Lao PDR",
+        "Lao People's Democratic Republic",
+        "Sathalanalat Paxathipatai Paxaxon Lao"
+      ],
+      "region": "LA",
+      "group": "Asia"
+    },
+    {
+      "id": "LB",
+      "answer": "Lebanon",
+      "aliases": [
+        "Al-Jumhūrīyah Al-Libnānīyah",
+        "Lebanese Republic"
+      ],
+      "region": "LB",
+      "group": "Asia"
+    },
+    {
+      "id": "MY",
+      "answer": "Malaysia",
+      "aliases": [],
+      "region": "MY",
+      "group": "Asia"
+    },
+    {
+      "id": "MV",
+      "answer": "Maldives",
+      "aliases": [
+        "Dhivehi Raajjeyge Jumhooriyya",
+        "Maldive Islands",
+        "Republic of the Maldives"
+      ],
+      "region": "MV",
+      "group": "Asia"
+    },
+    {
+      "id": "MN",
+      "answer": "Mongolia",
+      "aliases": [],
+      "region": "MN",
+      "group": "Asia"
+    },
+    {
+      "id": "MM",
+      "answer": "Myanmar",
+      "aliases": [
+        "Burma",
+        "Pyidaunzu Thanmăda Myăma Nainngandaw",
+        "Republic of the Union of Myanmar"
+      ],
+      "region": "MM",
+      "group": "Asia"
+    },
+    {
+      "id": "NP",
+      "answer": "Nepal",
+      "aliases": [
+        "Federal Democratic Republic of Nepal",
+        "Loktāntrik Ganatantra Nepāl"
+      ],
+      "region": "NP",
+      "group": "Asia"
+    },
+    {
+      "id": "KP",
+      "answer": "North Korea",
+      "aliases": [
+        "Chosŏn Minjujuŭi Inmin Konghwaguk",
+        "Democratic People's Republic of Korea",
+        "DPRK",
+        "Korea, Democratic People's Republic of",
+        "북조선",
+        "북한",
+        "조선민주주의인민공화국"
+      ],
+      "region": "KP",
+      "group": "Asia"
+    },
+    {
+      "id": "OM",
+      "answer": "Oman",
+      "aliases": [
+        "Salṭanat ʻUmān",
+        "Sultanate of Oman"
+      ],
+      "region": "OM",
+      "group": "Asia"
+    },
+    {
+      "id": "PK",
+      "answer": "Pakistan",
+      "aliases": [
+        "Islāmī Jumhūriya'eh Pākistān",
+        "Islamic Republic of Pakistan"
+      ],
+      "region": "PK",
+      "group": "Asia"
+    },
+    {
+      "id": "PS",
+      "answer": "Palestine",
+      "aliases": [
+        "Dawlat Filasṭin",
+        "Palestine, State of",
+        "State of Palestine"
+      ],
+      "region": "PS",
+      "group": "Asia"
+    },
+    {
+      "id": "PH",
+      "answer": "Philippines",
+      "aliases": [
+        "Republic of the Philippines",
+        "Repúblika ng Pilipinas"
+      ],
+      "region": "PH",
+      "group": "Asia"
+    },
+    {
+      "id": "QA",
+      "answer": "Qatar",
+      "aliases": [
+        "Dawlat Qaṭar",
+        "State of Qatar"
+      ],
+      "region": "QA",
+      "group": "Asia"
+    },
+    {
+      "id": "SA",
+      "answer": "Saudi Arabia",
+      "aliases": [
+        "Al-Mamlakah al-‘Arabiyyah as-Su‘ūdiyyah",
+        "Kingdom of Saudi Arabia",
+        "Saudi"
+      ],
+      "region": "SA",
+      "group": "Asia"
+    },
+    {
+      "id": "SG",
+      "answer": "Singapore",
+      "aliases": [
+        "Republic of Singapore",
+        "Republik Singapura",
+        "Singapura",
+        "新加坡共和国"
+      ],
+      "region": "SG",
+      "group": "Asia"
+    },
+    {
+      "id": "KR",
+      "answer": "South Korea",
+      "aliases": [
+        "Korea",
+        "Korea, Republic of",
+        "Republic of Korea",
+        "남조선",
+        "남한"
+      ],
+      "region": "KR",
+      "group": "Asia"
+    },
+    {
+      "id": "LK",
+      "answer": "Sri Lanka",
+      "aliases": [
+        "Democratic Socialist Republic of Sri Lanka",
+        "ilaṅkai"
+      ],
+      "region": "LK",
+      "group": "Asia"
+    },
+    {
+      "id": "SY",
+      "answer": "Syria",
+      "aliases": [
+        "Al-Jumhūrīyah Al-ʻArabīyah As-Sūrīyah",
+        "Syrian Arab Republic"
+      ],
+      "region": "SY",
+      "group": "Asia"
+    },
+    {
+      "id": "TW",
+      "answer": "Taiwan",
+      "aliases": [
+        "Chinese Taipei",
+        "Republic of China",
+        "Republic of China (Taiwan)",
+        "Zhōnghuá Mínguó",
+        "中華民國"
+      ],
+      "region": "TW",
+      "group": "Asia"
+    },
+    {
+      "id": "TJ",
+      "answer": "Tajikistan",
+      "aliases": [
+        "Çumhuriyi Toçikiston",
+        "Republic of Tajikistan",
+        "Toçikiston",
+        "Ҷумҳурии Тоҷикистон"
+      ],
+      "region": "TJ",
+      "group": "Asia"
+    },
+    {
+      "id": "TH",
+      "answer": "Thailand",
+      "aliases": [
+        "Kingdom of Thailand",
+        "Prathet",
+        "Ratcha Anachak Thai",
+        "Thai",
+        "ราชอาณาจักรไทย"
+      ],
+      "region": "TH",
+      "group": "Asia"
+    },
+    {
+      "id": "TL",
+      "answer": "Timor-Leste",
+      "aliases": [
+        "Democratic Republic of Timor-Leste",
+        "East Timor",
+        "República Democrática de Timor-Leste",
+        "Repúblika Demokrátika Timór-Leste",
+        "Timor",
+        "Timór Lorosa'e",
+        "Timor Lorosae"
+      ],
+      "region": "TL",
+      "group": "Asia"
+    },
+    {
+      "id": "TR",
+      "answer": "Türkiye",
+      "aliases": [
+        "Republic of Turkey",
+        "Republic of Türkiye",
+        "Turkey",
+        "Türkiye Cumhuriyeti"
+      ],
+      "region": "TR",
+      "group": "Asia"
+    },
+    {
+      "id": "TM",
+      "answer": "Turkmenistan",
+      "aliases": [],
+      "region": "TM",
+      "group": "Asia"
+    },
+    {
+      "id": "AE",
+      "answer": "United Arab Emirates",
+      "aliases": [
+        "Emirates"
+      ],
+      "region": "AE",
+      "group": "Asia"
+    },
+    {
+      "id": "UZ",
+      "answer": "Uzbekistan",
+      "aliases": [
+        "O‘zbekiston Respublikasi",
+        "Republic of Uzbekistan",
+        "Ўзбекистон Республикаси"
+      ],
+      "region": "UZ",
+      "group": "Asia"
+    },
+    {
+      "id": "VN",
+      "answer": "Vietnam",
+      "aliases": [
+        "Cộng hòa Xã hội chủ nghĩa Việt Nam",
+        "Socialist Republic of Vietnam",
+        "Viet Nam"
+      ],
+      "region": "VN",
+      "group": "Asia"
+    },
+    {
+      "id": "YE",
+      "answer": "Yemen",
+      "aliases": [
+        "al-Jumhūriyyah al-Yamaniyyah",
+        "Republic of Yemen",
+        "Yemeni Republic"
+      ],
+      "region": "YE",
+      "group": "Asia"
+    },
+    {
+      "id": "AU",
+      "answer": "Australia",
+      "aliases": [
+        "Commonwealth of Australia"
+      ],
+      "region": "AU",
+      "group": "Oceania"
+    },
+    {
+      "id": "FJ",
+      "answer": "Fiji",
+      "aliases": [
+        "Fijī Gaṇarājya",
+        "Matanitu ko Viti",
+        "Republic of Fiji",
+        "Viti"
+      ],
+      "region": "FJ",
+      "group": "Oceania"
+    },
+    {
+      "id": "KI",
+      "answer": "Kiribati",
+      "aliases": [
+        "Independent and Sovereign Republic of Kiribati",
+        "Republic of Kiribati",
+        "Ribaberiki Kiribati"
+      ],
+      "region": "KI",
+      "group": "Oceania"
+    },
+    {
+      "id": "MH",
+      "answer": "Marshall Islands",
+      "aliases": [
+        "Aolepān Aorōkin M̧ajeļ",
+        "Republic of the Marshall Islands"
+      ],
+      "region": "MH",
+      "group": "Oceania"
+    },
+    {
+      "id": "FM",
+      "answer": "Micronesia",
+      "aliases": [
+        "Federated States of Micronesia",
+        "Micronesia, Federated States of"
+      ],
+      "region": "FM",
+      "group": "Oceania"
+    },
+    {
+      "id": "NR",
+      "answer": "Nauru",
+      "aliases": [
+        "Naoero",
+        "Pleasant Island",
+        "Republic of Nauru",
+        "Ripublik Naoero"
+      ],
+      "region": "NR",
+      "group": "Oceania"
+    },
+    {
+      "id": "NZ",
+      "answer": "New Zealand",
+      "aliases": [
+        "Aotearoa"
+      ],
+      "region": "NZ",
+      "group": "Oceania"
+    },
+    {
+      "id": "PW",
+      "answer": "Palau",
+      "aliases": [
+        "Beluu er a Belau",
+        "Republic of Palau"
+      ],
+      "region": "PW",
+      "group": "Oceania"
+    },
+    {
+      "id": "PG",
+      "answer": "Papua New Guinea",
+      "aliases": [
+        "Independen Stet bilong Papua Niugini",
+        "Independent State of Papua New Guinea"
+      ],
+      "region": "PG",
+      "group": "Oceania"
+    },
+    {
+      "id": "WS",
+      "answer": "Samoa",
+      "aliases": [
+        "Independent State of Samoa",
+        "Malo Saʻoloto Tutoʻatasi o Sāmoa"
+      ],
+      "region": "WS",
+      "group": "Oceania"
+    },
+    {
+      "id": "SB",
+      "answer": "Solomon Islands",
+      "aliases": [],
+      "region": "SB",
+      "group": "Oceania"
+    },
+    {
+      "id": "TO",
+      "answer": "Tonga",
+      "aliases": [
+        "Kingdom of Tonga"
+      ],
+      "region": "TO",
+      "group": "Oceania"
+    },
+    {
+      "id": "TV",
+      "answer": "Tuvalu",
+      "aliases": [],
+      "region": "TV",
+      "group": "Oceania"
+    },
+    {
+      "id": "VU",
+      "answer": "Vanuatu",
+      "aliases": [
+        "Republic of Vanuatu",
+        "République de Vanuatu",
+        "Ripablik blong Vanuatu"
+      ],
+      "region": "VU",
+      "group": "Oceania"
+    }
   ]
 }

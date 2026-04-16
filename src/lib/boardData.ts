@@ -1,7 +1,7 @@
 import worldCountries from "@/data/quizzes/world_countries.json";
 
 type QuizSeed = {
-  items: Array<{ id: string; answer: string }>;
+  items: Array<{ id: string; answer: string; group?: string }>;
 };
 
 export type GroupDefinition = {
@@ -17,32 +17,14 @@ export type UclFinal = {
   venue: string;
 };
 
-export const WORLD_COUNTRY_GROUPS: GroupDefinition[] = [
-  {
-    label: "North America",
-    itemIds: ["CA", "CR", "CU", "DO", "GT", "HT", "HN", "JM", "MX", "NI", "PA", "SV", "US"],
-  },
-  {
-    label: "South America",
-    itemIds: ["AR", "BO", "BR", "CL", "CO", "EC", "GY", "PE", "PY", "SR", "UY", "VE"],
-  },
-  {
-    label: "Europe",
-    itemIds: ["AL", "AT", "BA", "BE", "BG", "BY", "CH", "CZ", "DE", "DK", "ES", "FI", "FR", "GB", "GR", "HR", "HU", "IE", "IS", "IT", "MK", "NL", "NO", "PL", "PT", "RO", "RS", "RU", "SE", "SI", "SK", "UA"],
-  },
-  {
-    label: "Africa",
-    itemIds: ["AO", "CI", "CM", "DZ", "EG", "ET", "GH", "KE", "LY", "MA", "MG", "MZ", "NG", "SD", "SN", "TN", "TZ", "UG", "ZA", "ZM", "ZW"],
-  },
-  {
-    label: "Asia",
-    itemIds: ["AE", "AF", "BD", "CN", "ID", "IL", "IN", "IQ", "IR", "JO", "JP", "KH", "KP", "KR", "KW", "LA", "LB", "LK", "MM", "MY", "NP", "OM", "PH", "PK", "QA", "SA", "SG", "SY", "TH", "TR", "VN", "YE"],
-  },
-  {
-    label: "Oceania",
-    itemIds: ["AU", "NZ"],
-  },
-];
+const WORLD_GROUP_ORDER = ["North America", "South America", "Europe", "Africa", "Asia", "Oceania"];
+
+export const WORLD_COUNTRY_GROUPS: GroupDefinition[] = WORLD_GROUP_ORDER.map((label) => ({
+  label,
+  itemIds: ((worldCountries as QuizSeed).items ?? [])
+    .filter((item) => item.group === label)
+    .map((item) => item.id.toUpperCase()),
+})).filter((group) => group.itemIds.length > 0);
 
 export const US_STATE_GROUPS: GroupDefinition[] = [
   {
