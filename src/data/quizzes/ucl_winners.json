@@ -26,6 +26,7 @@
     { "id": "psv", "answer": "PSV Eindhoven", "aliases": ["PSV"] },
     { "id": "red_star", "answer": "Red Star Belgrade", "aliases": ["Crvena Zvezda"] },
     { "id": "steaua", "answer": "Steaua Bucharest", "aliases": ["Steaua Bucuresti", "FCSB"] },
-    { "id": "manchester_city", "answer": "Manchester City", "aliases": ["Man City", "City"] }
+    { "id": "manchester_city", "answer": "Manchester City", "aliases": ["Man City", "City"] },
+    { "id": "psg", "answer": "Paris Saint-Germain", "aliases": ["PSG", "Paris SG"] }
   ]
 }

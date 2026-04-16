@@ -1,7 +1,7 @@
 {
   "id": "world_capitals",
   "label": "World Capitals",
-  "kind": "list",
+  "kind": "map",
   "prompt": "Type the capitals of the world",
   "items": [
     { "id": "us", "answer": "Washington, D.C.", "aliases": ["Washington DC", "Washington"] },
