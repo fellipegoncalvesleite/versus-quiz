@@ -1,8 +1,6 @@
-# Versus Quiz (CLAUDE build)
+# Versus Quiz 
 
 Real-time multiplayer typing quiz. Players join a private room by code, pick a quiz, and race to type valid answers. First correct claim locks the answer globally and colors it with the claimer's color. Classic geography typing quiz energy, turned multiplayer.
-
-Built fresh by Claude — this is a separate project from `versus-quiz/`.
 
 ## Stack
 
@@ -14,7 +12,7 @@ Built fresh by Claude — this is a separate project from `versus-quiz/`.
 ## Project layout
 
 ```
-versus-quiz-CLAUDE/
+versus-quiz/
 ├── src/
 │   ├── app/
 │   │   ├── page.tsx                       home (create/join)
