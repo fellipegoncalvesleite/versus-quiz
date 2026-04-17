@@ -3,6 +3,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { getQuizMeta } from "@/lib/quizMeta";
 import Link from "next/link";
+import Image from "next/image";
 
 const TIME_OPTS: { label: string; value: number | null }[] = [
   { label: "2 min", value: 120 },
@@ -52,10 +53,21 @@ export default function QuizDetail() {
       {/* Quiz header */}
       <div className="flex items-start gap-5">
         <div
-          className="w-20 h-20 rounded-xl flex items-center justify-center shrink-0"
+          className="relative w-24 h-24 rounded-xl overflow-hidden shrink-0 border border-neutral-800"
           style={{ background: `linear-gradient(135deg, ${quiz.color}20, ${quiz.color}10)` }}
         >
-          <span className="text-4xl">{quiz.icon}</span>
+          <Image
+            src={quiz.thumbnail}
+            alt={quiz.thumbnailAlt}
+            fill
+            sizes="96px"
+            className={quiz.thumbnailFit === "contain" ? "object-contain p-2 opacity-90" : "object-cover opacity-90"}
+            style={{ objectPosition: quiz.thumbnailPosition ?? "center center" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-neutral-950/20 to-transparent" />
+          <div className="absolute bottom-2 left-2 w-8 h-8 rounded-md bg-neutral-950/70 flex items-center justify-center text-lg">
+            {quiz.icon}
+          </div>
         </div>
         <div>
           <div className="flex gap-2 mb-1">

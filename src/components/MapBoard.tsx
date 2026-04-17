@@ -27,7 +27,7 @@ export default function MapBoard({
 
   if (quiz.id === "world_countries") {
     return (
-      <div className="space-y-4">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1.2fr)_minmax(360px,0.9fr)] xl:items-start">
         <SvgMapPanel
           map={worldMap as SvgMap}
           itemByMapId={itemByMapId}
@@ -46,7 +46,7 @@ export default function MapBoard({
 
   if (quiz.id === "us_states") {
     return (
-      <div className="space-y-4">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1.2fr)_minmax(340px,0.9fr)] xl:items-start">
         <SvgMapPanel
           map={usaMap as SvgMap}
           itemByMapId={itemByMapId}
@@ -65,7 +65,7 @@ export default function MapBoard({
 
   if (quiz.id === "world_capitals") {
     return (
-      <div className="space-y-4">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1.2fr)_minmax(360px,0.9fr)] xl:items-start">
         <SvgMapPanel
           map={worldMap as SvgMap}
           itemByMapId={itemByMapId}
