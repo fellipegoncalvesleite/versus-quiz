@@ -10,6 +10,7 @@ export type QuizItem = {
   answer: string;
   aliases: string[];
   region?: string;
+  group?: string;
 };
 export type Quiz = {
   id: string;

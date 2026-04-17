@@ -14,10 +14,10 @@ export const QUIZ_META: QuizMeta[] = [
   {
     id: "world_countries",
     label: "Countries of the World",
-    description: "Name every country on the planet. 112 countries to claim.",
+    description: "Name every country on the planet. 197 countries to claim.",
     category: "Geography",
     kind: "map",
-    itemCount: 112,
+    itemCount: 197,
     color: "#22c55e",
     icon: "🌍",
     featured: true,
