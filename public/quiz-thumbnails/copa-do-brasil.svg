@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="140" x2="1470" y1="110" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#180c08"/>
+      <stop offset="1" stop-color="#35150a"/>
+    </linearGradient>
+    <linearGradient id="cup" x1="585" x2="1012" y1="226" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fed7aa"/>
+      <stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1250" cy="170" r="210" fill="#fb923c" fill-opacity=".15"/>
+  <circle cx="310" cy="744" r="240" fill="#f97316" fill-opacity=".12"/>
+  <path d="M612 236h376l-38 198c-17 90-92 162-186 179v74h79v58H756v-58h81v-74c-94-17-169-89-186-179l-39-198z" fill="url(#cup)"/>
+  <path d="M716 242l-34 168c-12 62 30 118 92 124l26 2 26-2c62-6 104-62 92-124l-34-168H716z" fill="#fff7ed" fill-opacity=".26"/>
+  <g stroke="#fdba74" stroke-width="20" stroke-linecap="round">
+    <path d="M640 330H516"/>
+    <path d="M1086 330H962"/>
+    <path d="M476 330h-86"/>
+    <path d="M1210 330h-86"/>
+  </g>
+  <g fill="#fdba74">
+    <circle cx="390" cy="330" r="26"/>
+    <circle cx="1210" cy="330" r="26"/>
+    <circle cx="516" cy="330" r="18"/>
+    <circle cx="1086" cy="330" r="18"/>
+  </g>
+  <path d="M286 658h1028" stroke="#7c2d12" stroke-width="16" stroke-linecap="round"/>
+  <path d="M364 716h872" stroke="#9a3412" stroke-width="10" stroke-linecap="round"/>
+  <rect x="122" y="126" width="392" height="82" rx="18" fill="#1c0d08" fill-opacity=".82" stroke="#6b2a12"/>
+  <text x="156" y="177" fill="#ffedd5" font-family="Arial, sans-serif" font-size="40" font-weight="700">Copa do Brasil Finals</text>
+  <text x="156" y="230" fill="#fdba74" font-family="Arial, sans-serif" font-size="24" font-weight="600">Historical final pairings</text>
+</svg>

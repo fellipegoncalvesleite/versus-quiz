@@ -1,0 +1,32 @@
+{
+  "id": "copa_do_brasil_finalists",
+  "label": "Copa do Brasil Winners & Runners-up",
+  "kind": "list",
+  "prompt": "Name every club to win or finish runner-up in Copa do Brasil history",
+  "items": [
+    { "id": "athletico_paranaense", "answer": "Athletico Paranaense", "aliases": ["Athletico", "Athletico-PR", "Athletico PR", "Atlético Paranaense", "Atletico Paranaense", "CAP", "Furacão", "Furacao"] },
+    { "id": "atletico_mineiro", "answer": "Atlético Mineiro", "aliases": ["Atletico Mineiro", "Atlético-MG", "Atletico MG", "Galo"] },
+    { "id": "botafogo", "answer": "Botafogo", "aliases": ["Botafogo FR", "Botafogo-RJ"] },
+    { "id": "brasiliense", "answer": "Brasiliense", "aliases": ["Brasiliense FC"] },
+    { "id": "ceara", "answer": "Ceará", "aliases": ["Ceara", "Ceará SC"] },
+    { "id": "corinthians", "answer": "Corinthians", "aliases": ["Corinthians Paulista", "Timão", "Timao"] },
+    { "id": "coritiba", "answer": "Coritiba", "aliases": ["Coxa"] },
+    { "id": "criciuma", "answer": "Criciúma", "aliases": ["Criciuma"] },
+    { "id": "cruzeiro", "answer": "Cruzeiro", "aliases": ["Cruzeiro EC"] },
+    { "id": "figueirense", "answer": "Figueirense", "aliases": ["Figueirense FC"] },
+    { "id": "flamengo", "answer": "Flamengo", "aliases": ["CR Flamengo", "Mengão", "Mengao"] },
+    { "id": "fluminense", "answer": "Fluminense", "aliases": ["Flu"] },
+    { "id": "goias", "answer": "Goiás", "aliases": ["Goias", "Goiás EC"] },
+    { "id": "gremio", "answer": "Grêmio", "aliases": ["Gremio", "Grêmio FBPA"] },
+    { "id": "internacional", "answer": "Internacional", "aliases": ["Inter", "SC Internacional"] },
+    { "id": "juventude", "answer": "Juventude", "aliases": ["EC Juventude"] },
+    { "id": "palmeiras", "answer": "Palmeiras", "aliases": ["SE Palmeiras"] },
+    { "id": "paulista", "answer": "Paulista", "aliases": ["Paulista de Jundiaí", "Paulista de Jundiai"] },
+    { "id": "santo_andre", "answer": "Santo André", "aliases": ["Santo Andre"] },
+    { "id": "santos", "answer": "Santos", "aliases": ["Santos FC"] },
+    { "id": "sport", "answer": "Sport", "aliases": ["Sport Recife", "Sport Club do Recife"] },
+    { "id": "sao_paulo", "answer": "São Paulo", "aliases": ["Sao Paulo", "São Paulo FC", "Sao Paulo FC"] },
+    { "id": "vasco", "answer": "Vasco da Gama", "aliases": ["Vasco", "CR Vasco da Gama"] },
+    { "id": "vitoria", "answer": "Vitória", "aliases": ["Vitoria", "EC Vitória", "EC Vitoria"] }
+  ]
+}

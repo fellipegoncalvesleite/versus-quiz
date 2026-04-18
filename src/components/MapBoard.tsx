@@ -1,7 +1,14 @@
+import brazilMap from "@svg-maps/brazil";
 import usaMap from "@svg-maps/usa";
 import worldMap from "@svg-maps/world";
 import type { Quiz, QuizItem } from "@/lib/quizzes";
-import { getCountryName, US_STATE_GROUPS, WORLD_COUNTRY_GROUPS } from "@/lib/boardData";
+import {
+  BRAZIL_STATE_GROUPS,
+  getBrazilStateName,
+  getCountryName,
+  US_STATE_GROUPS,
+  WORLD_COUNTRY_GROUPS,
+} from "@/lib/boardData";
 import { maskLabel, OwnershipBadge, type BoardOwnership } from "./BoardPrimitives";
 
 type SvgLocation = {
@@ -24,6 +31,7 @@ export default function MapBoard({
   ownershipOf: (itemId: string) => BoardOwnership;
 }) {
   const itemByMapId = new Map(quiz.items.map((item) => [item.id.toLowerCase(), item]));
+  const itemByUpperId = new Map(quiz.items.map((item) => [item.id.toUpperCase(), item]));
 
   if (quiz.id === "world_countries") {
     return (
@@ -37,7 +45,7 @@ export default function MapBoard({
         <GroupedClaimBoard
           title="Countries by Continent"
           groups={WORLD_COUNTRY_GROUPS}
-          itemById={new Map(quiz.items.map((item) => [item.id.toUpperCase(), item]))}
+          itemById={itemByUpperId}
           ownershipOf={ownershipOf}
         />
       </div>
@@ -56,7 +64,26 @@ export default function MapBoard({
         <GroupedClaimBoard
           title="States by Region"
           groups={US_STATE_GROUPS}
-          itemById={new Map(quiz.items.map((item) => [item.id.toUpperCase(), item]))}
+          itemById={itemByUpperId}
+          ownershipOf={ownershipOf}
+        />
+      </div>
+    );
+  }
+
+  if (quiz.id === "brazil_states") {
+    return (
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1.2fr)_minmax(340px,0.9fr)] xl:items-start">
+        <SvgMapPanel
+          map={brazilMap as SvgMap}
+          itemByMapId={itemByMapId}
+          ownershipOf={ownershipOf}
+          subtitle="Claim every Brazilian state directly on the map. Locked states stay in the claiming player's color."
+        />
+        <GroupedClaimBoard
+          title="States by Region"
+          groups={BRAZIL_STATE_GROUPS}
+          itemById={itemByUpperId}
           ownershipOf={ownershipOf}
         />
       </div>
@@ -70,9 +97,37 @@ export default function MapBoard({
           map={worldMap as SvgMap}
           itemByMapId={itemByMapId}
           ownershipOf={ownershipOf}
-          subtitle="Typing a capital colors its country on the map. The table below keeps country and capital paired together."
+          subtitle="Typing a capital colors its country on the map. The table keeps country and capital paired together."
         />
-        <CapitalsBoard items={quiz.items} ownershipOf={ownershipOf} />
+        <RelationshipBoard
+          title="Countries and Capitals"
+          items={quiz.items}
+          ownershipOf={ownershipOf}
+          entityLabel="Country"
+          answerLabel="Capital"
+          labelForId={getCountryName}
+        />
+      </div>
+    );
+  }
+
+  if (quiz.id === "brazil_state_capitals") {
+    return (
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1.2fr)_minmax(360px,0.9fr)] xl:items-start">
+        <SvgMapPanel
+          map={brazilMap as SvgMap}
+          itemByMapId={itemByMapId}
+          ownershipOf={ownershipOf}
+          subtitle="Typing a capital colors its state on the map. The table below keeps each state paired with its capital."
+        />
+        <RelationshipBoard
+          title="States and Capitals"
+          items={quiz.items}
+          ownershipOf={ownershipOf}
+          entityLabel="State"
+          answerLabel="Capital"
+          labelForId={getBrazilStateName}
+        />
       </div>
     );
   }
@@ -203,26 +258,34 @@ function GroupedClaimBoard({
   );
 }
 
-function CapitalsBoard({
+function RelationshipBoard({
+  title,
   items,
   ownershipOf,
+  entityLabel,
+  answerLabel,
+  labelForId,
 }: {
+  title: string;
   items: QuizItem[];
   ownershipOf: (itemId: string) => BoardOwnership;
+  entityLabel: string;
+  answerLabel: string;
+  labelForId: (id: string) => string;
 }) {
-  const rows = [...items].sort((a, b) => getCountryName(a.id).localeCompare(getCountryName(b.id)));
+  const rows = [...items].sort((a, b) => labelForId(a.id).localeCompare(labelForId(b.id)));
 
   return (
     <section className="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden">
       <header className="border-b border-neutral-800 px-4 py-3">
-        <h2 className="text-xs uppercase tracking-wider text-neutral-500">Countries and Capitals</h2>
+        <h2 className="text-xs uppercase tracking-wider text-neutral-500">{title}</h2>
       </header>
       <div className="overflow-x-auto">
         <table className="w-full min-w-[560px] text-sm">
           <thead className="text-left text-xs uppercase tracking-wider text-neutral-500">
             <tr>
-              <th className="px-4 py-2.5 font-medium">Country</th>
-              <th className="px-4 py-2.5 font-medium">Capital</th>
+              <th className="px-4 py-2.5 font-medium">{entityLabel}</th>
+              <th className="px-4 py-2.5 font-medium">{answerLabel}</th>
               <th className="px-4 py-2.5 font-medium">Claimed by</th>
             </tr>
           </thead>
@@ -231,7 +294,7 @@ function CapitalsBoard({
               const ownership = ownershipOf(item.id);
               return (
                 <tr key={item.id} className="border-t border-neutral-800">
-                  <td className="px-4 py-3 text-neutral-300">{getCountryName(item.id)}</td>
+                  <td className="px-4 py-3 text-neutral-300">{labelForId(item.id)}</td>
                   <td
                     className={`px-4 py-3 ${ownership ? "font-medium" : "text-neutral-600"}`}
                     style={ownership ? { color: ownership.color } : undefined}

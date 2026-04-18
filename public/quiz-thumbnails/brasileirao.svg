@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="120" x2="1450" y1="90" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#161107"/>
+      <stop offset="1" stop-color="#2f2108"/>
+    </linearGradient>
+    <linearGradient id="cup" x1="552" x2="1012" y1="220" y2="714" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fde68a"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1220" cy="150" r="200" fill="#f59e0b" fill-opacity=".16"/>
+  <circle cx="330" cy="760" r="250" fill="#facc15" fill-opacity=".12"/>
+  <g stroke="#fde68a" stroke-opacity=".28" stroke-width="10">
+    <path d="M220 692h1160"/>
+    <path d="M344 742h908"/>
+  </g>
+  <g fill="url(#cup)">
+    <path d="M611 216h379v82c0 120-82 230-204 273v92h111v74H704v-74h111v-92c-123-43-204-153-204-273v-82z"/>
+    <path d="M611 250H483c0 128 55 202 174 214v-84c-65-12-103-58-103-130h57z"/>
+    <path d="M990 250h129c0 128-55 202-174 214v-84c65-12 102-58 102-130h-57z"/>
+  </g>
+  <circle cx="800" cy="356" r="95" fill="#fff7ed" fill-opacity=".28"/>
+  <g fill="#fde68a">
+    <path d="M800 120l17 44h47l-38 26 14 45-40-28-40 28 14-45-38-26h47l17-44z"/>
+    <path d="M690 150l12 32h33l-27 18 10 33-28-20-29 20 10-33-27-18h33l13-32z"/>
+    <path d="M910 150l12 32h33l-27 18 10 33-28-20-29 20 10-33-27-18h33l13-32z"/>
+  </g>
+  <rect x="122" y="126" width="356" height="82" rx="18" fill="#191107" fill-opacity=".82" stroke="#5a400b"/>
+  <text x="156" y="177" fill="#fef3c7" font-family="Arial, sans-serif" font-size="40" font-weight="700">Brasileirão Finals</text>
+  <text x="156" y="230" fill="#fcd34d" font-family="Arial, sans-serif" font-size="24" font-weight="600">Winners and runners-up by season</text>
+</svg>

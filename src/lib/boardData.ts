@@ -1,3 +1,4 @@
+import brazilStates from "@/data/quizzes/brazil_states.json";
 import worldCountries from "@/data/quizzes/world_countries.json";
 
 type QuizSeed = {
@@ -9,22 +10,31 @@ export type GroupDefinition = {
   itemIds: string[];
 };
 
-export type UclFinal = {
+export type SeasonHistoryRow = {
   season: string;
   winnerId: string;
   runnerUp: string;
-  score: string;
-  venue: string;
+  runnerUpId?: string;
+  score?: string;
+  venue?: string;
 };
 
 const WORLD_GROUP_ORDER = ["North America", "South America", "Europe", "Africa", "Asia", "Oceania"];
+const BRAZIL_GROUP_ORDER = ["North", "Northeast", "Central-West", "Southeast", "South"];
 
-export const WORLD_COUNTRY_GROUPS: GroupDefinition[] = WORLD_GROUP_ORDER.map((label) => ({
-  label,
-  itemIds: ((worldCountries as QuizSeed).items ?? [])
-    .filter((item) => item.group === label)
-    .map((item) => item.id.toUpperCase()),
-})).filter((group) => group.itemIds.length > 0);
+function buildGroups(seed: QuizSeed, order: string[]): GroupDefinition[] {
+  return order
+    .map((label) => ({
+      label,
+      itemIds: (seed.items ?? [])
+        .filter((item) => item.group === label)
+        .map((item) => item.id.toUpperCase()),
+    }))
+    .filter((group) => group.itemIds.length > 0);
+}
+
+export const WORLD_COUNTRY_GROUPS = buildGroups(worldCountries as QuizSeed, WORLD_GROUP_ORDER);
+export const BRAZIL_STATE_GROUPS = buildGroups(brazilStates as QuizSeed, BRAZIL_GROUP_ORDER);
 
 export const US_STATE_GROUPS: GroupDefinition[] = [
   {
@@ -45,7 +55,7 @@ export const US_STATE_GROUPS: GroupDefinition[] = [
   },
 ];
 
-export const UCL_FINALS: UclFinal[] = [
+export const UCL_FINALS: SeasonHistoryRow[] = [
   { season: "1955-56", winnerId: "real_madrid", runnerUp: "Reims", score: "4–3", venue: "Parc des Princes, Paris, France" },
   { season: "1956-57", winnerId: "real_madrid", runnerUp: "Fiorentina", score: "2–0", venue: "Santiago Bernabeu, Madrid, Spain" },
   { season: "1957-58", winnerId: "real_madrid", runnerUp: "Milan", score: "3–2†", venue: "Heysel Stadium, Brussels, Belgium" },
@@ -118,6 +128,119 @@ export const UCL_FINALS: UclFinal[] = [
   { season: "2024-25", winnerId: "psg", runnerUp: "Inter Milan", score: "5–0", venue: "Allianz Arena, Munich, Germany" },
 ];
 
+export const BRASILEIRAO_FINALS: SeasonHistoryRow[] = [
+  { season: "1937", winnerId: "atletico_mineiro", runnerUpId: "fluminense", runnerUp: "Fluminense" },
+  { season: "1959", winnerId: "bahia", runnerUpId: "santos", runnerUp: "Santos" },
+  { season: "1960", winnerId: "palmeiras", runnerUpId: "fortaleza", runnerUp: "Fortaleza" },
+  { season: "1961", winnerId: "santos", runnerUpId: "bahia", runnerUp: "Bahia" },
+  { season: "1962", winnerId: "santos", runnerUpId: "botafogo", runnerUp: "Botafogo" },
+  { season: "1963", winnerId: "santos", runnerUpId: "bahia", runnerUp: "Bahia" },
+  { season: "1964", winnerId: "santos", runnerUpId: "flamengo", runnerUp: "Flamengo" },
+  { season: "1965", winnerId: "santos", runnerUpId: "vasco", runnerUp: "Vasco da Gama" },
+  { season: "1966", winnerId: "cruzeiro", runnerUpId: "santos", runnerUp: "Santos" },
+  { season: "1967", winnerId: "palmeiras", runnerUpId: "internacional", runnerUp: "Internacional" },
+  { season: "1967-B", winnerId: "palmeiras", runnerUpId: "nautico", runnerUp: "Náutico" },
+  { season: "1968", winnerId: "botafogo", runnerUpId: "fortaleza", runnerUp: "Fortaleza" },
+  { season: "1968-B", winnerId: "santos", runnerUpId: "internacional", runnerUp: "Internacional" },
+  { season: "1969", winnerId: "palmeiras", runnerUpId: "cruzeiro", runnerUp: "Cruzeiro" },
+  { season: "1970", winnerId: "fluminense", runnerUpId: "palmeiras", runnerUp: "Palmeiras" },
+  { season: "1971", winnerId: "atletico_mineiro", runnerUpId: "sao_paulo", runnerUp: "São Paulo" },
+  { season: "1972", winnerId: "palmeiras", runnerUpId: "botafogo", runnerUp: "Botafogo" },
+  { season: "1973", winnerId: "palmeiras", runnerUpId: "sao_paulo", runnerUp: "São Paulo" },
+  { season: "1974", winnerId: "vasco", runnerUpId: "cruzeiro", runnerUp: "Cruzeiro" },
+  { season: "1975", winnerId: "internacional", runnerUpId: "cruzeiro", runnerUp: "Cruzeiro" },
+  { season: "1976", winnerId: "internacional", runnerUpId: "corinthians", runnerUp: "Corinthians" },
+  { season: "1977", winnerId: "sao_paulo", runnerUpId: "atletico_mineiro", runnerUp: "Atlético Mineiro" },
+  { season: "1978", winnerId: "guarani", runnerUpId: "palmeiras", runnerUp: "Palmeiras" },
+  { season: "1979", winnerId: "internacional", runnerUpId: "vasco", runnerUp: "Vasco da Gama" },
+  { season: "1980", winnerId: "flamengo", runnerUpId: "atletico_mineiro", runnerUp: "Atlético Mineiro" },
+  { season: "1981", winnerId: "gremio", runnerUpId: "sao_paulo", runnerUp: "São Paulo" },
+  { season: "1982", winnerId: "flamengo", runnerUpId: "gremio", runnerUp: "Grêmio" },
+  { season: "1983", winnerId: "flamengo", runnerUpId: "santos", runnerUp: "Santos" },
+  { season: "1984", winnerId: "fluminense", runnerUpId: "vasco", runnerUp: "Vasco da Gama" },
+  { season: "1985", winnerId: "coritiba", runnerUpId: "bangu", runnerUp: "Bangu" },
+  { season: "1986", winnerId: "sao_paulo", runnerUpId: "guarani", runnerUp: "Guarani" },
+  { season: "1987", winnerId: "sport", runnerUpId: "guarani", runnerUp: "Guarani" },
+  { season: "1988", winnerId: "bahia", runnerUpId: "internacional", runnerUp: "Internacional" },
+  { season: "1989", winnerId: "vasco", runnerUpId: "sao_paulo", runnerUp: "São Paulo" },
+  { season: "1990", winnerId: "corinthians", runnerUpId: "sao_paulo", runnerUp: "São Paulo" },
+  { season: "1991", winnerId: "sao_paulo", runnerUpId: "bragantino", runnerUp: "Bragantino" },
+  { season: "1992", winnerId: "flamengo", runnerUpId: "botafogo", runnerUp: "Botafogo" },
+  { season: "1993", winnerId: "palmeiras", runnerUpId: "vitoria", runnerUp: "Vitória" },
+  { season: "1994", winnerId: "palmeiras", runnerUpId: "corinthians", runnerUp: "Corinthians" },
+  { season: "1995", winnerId: "botafogo", runnerUpId: "santos", runnerUp: "Santos" },
+  { season: "1996", winnerId: "gremio", runnerUpId: "portuguesa", runnerUp: "Portuguesa" },
+  { season: "1997", winnerId: "vasco", runnerUpId: "palmeiras", runnerUp: "Palmeiras" },
+  { season: "1998", winnerId: "corinthians", runnerUpId: "cruzeiro", runnerUp: "Cruzeiro" },
+  { season: "1999", winnerId: "corinthians", runnerUpId: "atletico_mineiro", runnerUp: "Atlético Mineiro" },
+  { season: "2000", winnerId: "vasco", runnerUpId: "sao_caetano", runnerUp: "São Caetano" },
+  { season: "2001", winnerId: "athletico_paranaense", runnerUpId: "sao_caetano", runnerUp: "São Caetano" },
+  { season: "2002", winnerId: "santos", runnerUpId: "corinthians", runnerUp: "Corinthians" },
+  { season: "2003", winnerId: "cruzeiro", runnerUpId: "santos", runnerUp: "Santos" },
+  { season: "2004", winnerId: "santos", runnerUpId: "athletico_paranaense", runnerUp: "Athletico Paranaense" },
+  { season: "2005", winnerId: "corinthians", runnerUpId: "internacional", runnerUp: "Internacional" },
+  { season: "2006", winnerId: "sao_paulo", runnerUpId: "internacional", runnerUp: "Internacional" },
+  { season: "2007", winnerId: "sao_paulo", runnerUpId: "santos", runnerUp: "Santos" },
+  { season: "2008", winnerId: "sao_paulo", runnerUpId: "gremio", runnerUp: "Grêmio" },
+  { season: "2009", winnerId: "flamengo", runnerUpId: "internacional", runnerUp: "Internacional" },
+  { season: "2010", winnerId: "fluminense", runnerUpId: "cruzeiro", runnerUp: "Cruzeiro" },
+  { season: "2011", winnerId: "corinthians", runnerUpId: "vasco", runnerUp: "Vasco da Gama" },
+  { season: "2012", winnerId: "fluminense", runnerUpId: "atletico_mineiro", runnerUp: "Atlético Mineiro" },
+  { season: "2013", winnerId: "cruzeiro", runnerUpId: "gremio", runnerUp: "Grêmio" },
+  { season: "2014", winnerId: "cruzeiro", runnerUpId: "sao_paulo", runnerUp: "São Paulo" },
+  { season: "2015", winnerId: "corinthians", runnerUpId: "atletico_mineiro", runnerUp: "Atlético Mineiro" },
+  { season: "2016", winnerId: "palmeiras", runnerUpId: "santos", runnerUp: "Santos" },
+  { season: "2017", winnerId: "corinthians", runnerUpId: "palmeiras", runnerUp: "Palmeiras" },
+  { season: "2018", winnerId: "palmeiras", runnerUpId: "flamengo", runnerUp: "Flamengo" },
+  { season: "2019", winnerId: "flamengo", runnerUpId: "santos", runnerUp: "Santos" },
+  { season: "2020", winnerId: "flamengo", runnerUpId: "internacional", runnerUp: "Internacional" },
+  { season: "2021", winnerId: "atletico_mineiro", runnerUpId: "flamengo", runnerUp: "Flamengo" },
+  { season: "2022", winnerId: "palmeiras", runnerUpId: "internacional", runnerUp: "Internacional" },
+  { season: "2023", winnerId: "palmeiras", runnerUpId: "gremio", runnerUp: "Grêmio" },
+  { season: "2024", winnerId: "botafogo", runnerUpId: "palmeiras", runnerUp: "Palmeiras" },
+  { season: "2025", winnerId: "flamengo", runnerUpId: "palmeiras", runnerUp: "Palmeiras" },
+];
+
+export const COPA_DO_BRASIL_FINALS: SeasonHistoryRow[] = [
+  { season: "1989", winnerId: "gremio", runnerUpId: "sport", runnerUp: "Sport" },
+  { season: "1990", winnerId: "flamengo", runnerUpId: "goias", runnerUp: "Goiás" },
+  { season: "1991", winnerId: "criciuma", runnerUpId: "gremio", runnerUp: "Grêmio" },
+  { season: "1992", winnerId: "internacional", runnerUpId: "fluminense", runnerUp: "Fluminense" },
+  { season: "1993", winnerId: "cruzeiro", runnerUpId: "gremio", runnerUp: "Grêmio" },
+  { season: "1994", winnerId: "gremio", runnerUpId: "ceara", runnerUp: "Ceará" },
+  { season: "1995", winnerId: "corinthians", runnerUpId: "gremio", runnerUp: "Grêmio" },
+  { season: "1996", winnerId: "cruzeiro", runnerUpId: "palmeiras", runnerUp: "Palmeiras" },
+  { season: "1997", winnerId: "gremio", runnerUpId: "flamengo", runnerUp: "Flamengo" },
+  { season: "1998", winnerId: "palmeiras", runnerUpId: "cruzeiro", runnerUp: "Cruzeiro" },
+  { season: "1999", winnerId: "juventude", runnerUpId: "botafogo", runnerUp: "Botafogo" },
+  { season: "2000", winnerId: "cruzeiro", runnerUpId: "sao_paulo", runnerUp: "São Paulo" },
+  { season: "2001", winnerId: "gremio", runnerUpId: "corinthians", runnerUp: "Corinthians" },
+  { season: "2002", winnerId: "corinthians", runnerUpId: "brasiliense", runnerUp: "Brasiliense" },
+  { season: "2003", winnerId: "cruzeiro", runnerUpId: "flamengo", runnerUp: "Flamengo" },
+  { season: "2004", winnerId: "santo_andre", runnerUpId: "flamengo", runnerUp: "Flamengo" },
+  { season: "2005", winnerId: "paulista", runnerUpId: "fluminense", runnerUp: "Fluminense" },
+  { season: "2006", winnerId: "flamengo", runnerUpId: "vasco", runnerUp: "Vasco da Gama" },
+  { season: "2007", winnerId: "fluminense", runnerUpId: "figueirense", runnerUp: "Figueirense" },
+  { season: "2008", winnerId: "sport", runnerUpId: "corinthians", runnerUp: "Corinthians" },
+  { season: "2009", winnerId: "corinthians", runnerUpId: "internacional", runnerUp: "Internacional" },
+  { season: "2010", winnerId: "santos", runnerUpId: "vitoria", runnerUp: "Vitória" },
+  { season: "2011", winnerId: "vasco", runnerUpId: "coritiba", runnerUp: "Coritiba" },
+  { season: "2012", winnerId: "palmeiras", runnerUpId: "coritiba", runnerUp: "Coritiba" },
+  { season: "2013", winnerId: "flamengo", runnerUpId: "athletico_paranaense", runnerUp: "Athletico Paranaense" },
+  { season: "2014", winnerId: "atletico_mineiro", runnerUpId: "cruzeiro", runnerUp: "Cruzeiro" },
+  { season: "2015", winnerId: "palmeiras", runnerUpId: "santos", runnerUp: "Santos" },
+  { season: "2016", winnerId: "gremio", runnerUpId: "atletico_mineiro", runnerUp: "Atlético Mineiro" },
+  { season: "2017", winnerId: "cruzeiro", runnerUpId: "flamengo", runnerUp: "Flamengo" },
+  { season: "2018", winnerId: "cruzeiro", runnerUpId: "corinthians", runnerUp: "Corinthians" },
+  { season: "2019", winnerId: "athletico_paranaense", runnerUpId: "internacional", runnerUp: "Internacional" },
+  { season: "2020", winnerId: "palmeiras", runnerUpId: "gremio", runnerUp: "Grêmio" },
+  { season: "2021", winnerId: "atletico_mineiro", runnerUpId: "athletico_paranaense", runnerUp: "Athletico Paranaense" },
+  { season: "2022", winnerId: "flamengo", runnerUpId: "corinthians", runnerUp: "Corinthians" },
+  { season: "2023", winnerId: "sao_paulo", runnerUpId: "flamengo", runnerUp: "Flamengo" },
+  { season: "2024", winnerId: "flamengo", runnerUpId: "atletico_mineiro", runnerUp: "Atlético Mineiro" },
+  { season: "2025", winnerId: "corinthians", runnerUpId: "vasco", runnerUp: "Vasco da Gama" },
+];
+
 const UCL_FINALIST_IDS = new Map<string, string>([
   ["AC Milan", "ac_milan"],
   ["Ajax", "ajax"],
@@ -172,6 +295,14 @@ const countryNameByCode = new Map(
   ((worldCountries as QuizSeed).items ?? []).map((item) => [item.id.toUpperCase(), item.answer]),
 );
 
+const brazilStateNameByCode = new Map(
+  ((brazilStates as QuizSeed).items ?? []).map((item) => [item.id.toUpperCase(), item.answer]),
+);
+
 export function getCountryName(code: string): string {
   return countryNameByCode.get(code.toUpperCase()) ?? code.toUpperCase();
+}
+
+export function getBrazilStateName(code: string): string {
+  return brazilStateNameByCode.get(code.toUpperCase()) ?? code.toUpperCase();
 }

@@ -1,5 +1,11 @@
 import type { Quiz } from "@/lib/quizzes";
-import { getUclFinalistId, UCL_FINALS } from "@/lib/boardData";
+import {
+  BRASILEIRAO_FINALS,
+  COPA_DO_BRASIL_FINALS,
+  getUclFinalistId,
+  type SeasonHistoryRow,
+  UCL_FINALS,
+} from "@/lib/boardData";
 import { maskLabel, type BoardOwnership } from "./BoardPrimitives";
 
 export default function ListBoard({
@@ -13,8 +19,9 @@ export default function ListBoard({
     return <RankingBoard quiz={quiz} ownershipOf={ownershipOf} />;
   }
 
-  if (quiz.id === "ucl_winners") {
-    return <ChampionsLeagueBoard quiz={quiz} ownershipOf={ownershipOf} />;
+  const historyRows = getHistoryRows(quiz.id);
+  if (historyRows) {
+    return <SeasonHistoryBoard quiz={quiz} rows={historyRows} ownershipOf={ownershipOf} />;
   }
 
   return <GenericListBoard quiz={quiz} ownershipOf={ownershipOf} />;
@@ -65,22 +72,26 @@ function RankingBoard({
   );
 }
 
-function ChampionsLeagueBoard({
+function SeasonHistoryBoard({
   quiz,
+  rows,
   ownershipOf,
 }: {
   quiz: Quiz;
+  rows: SeasonHistoryRow[];
   ownershipOf: (itemId: string) => BoardOwnership;
 }) {
   const clubById = new Map(quiz.items.map((item) => [item.id, item]));
-  const columns = splitIntoColumns(UCL_FINALS, 2);
+  const columnCount = rows.length > 56 ? 3 : 2;
+  const columns = splitIntoColumns(rows, columnCount);
+  const gridClass = columnCount === 3 ? "grid gap-4 xl:grid-cols-2 2xl:grid-cols-3" : "grid gap-4 lg:grid-cols-2";
 
   return (
     <section className="space-y-3">
       <header className="bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3">
         <h2 className="text-xs uppercase tracking-wider text-neutral-500">Winners & Runners-up</h2>
       </header>
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className={gridClass}>
         {columns.map((column, columnIndex) => (
           <div key={columnIndex} className="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden">
             <table className="w-full text-sm">
@@ -95,18 +106,18 @@ function ChampionsLeagueBoard({
                 {column.map((final) => {
                   const winner = clubById.get(final.winnerId);
                   const winnerOwnership = winner ? ownershipOf(winner.id) : null;
-                  const runnerUpId = getUclFinalistId(final.runnerUp);
+                  const runnerUpId = final.runnerUpId ?? getUclFinalistId(final.runnerUp);
                   const runnerUp = runnerUpId ? clubById.get(runnerUpId) : null;
                   const runnerUpOwnership = runnerUp ? ownershipOf(runnerUp.id) : null;
 
                   return (
                     <tr key={`${columnIndex}-${final.season}`} className="border-t border-neutral-800 align-top">
                       <td className="px-4 py-3">
-                        <div className="font-mono text-neutral-400">{compactSeason(final.season)}</div>
-                        <div className="text-[11px] text-neutral-600">{final.score}</div>
+                        <div className="font-mono text-neutral-400">{formatSeasonLabel(final.season)}</div>
+                        {final.score ? <div className="text-[11px] text-neutral-600">{final.score}</div> : null}
                       </td>
                       <ClaimTableCell ownership={winnerOwnership} label={winner?.answer ?? final.winnerId} />
-                      <ClaimTableCell ownership={runnerUpOwnership} label={final.runnerUp} />
+                      <ClaimTableCell ownership={runnerUpOwnership} label={runnerUp?.answer ?? final.runnerUp} />
                     </tr>
                   );
                 })}
@@ -145,10 +156,22 @@ function GenericListBoard({
   );
 }
 
-function compactSeason(season: string): string {
-  const [start, end] = season.split("-");
-  if (!start || !end || end.length < 2) return season;
-  return `${start.slice(-2)}-${end.slice(-2)}`;
+function getHistoryRows(quizId: string): SeasonHistoryRow[] | null {
+  if (quizId === "ucl_winners") return UCL_FINALS;
+  if (quizId === "brasileirao_finalists") return BRASILEIRAO_FINALS;
+  if (quizId === "copa_do_brasil_finalists") return COPA_DO_BRASIL_FINALS;
+  return null;
+}
+
+function formatSeasonLabel(season: string): string {
+  if (/^\d{4}-\d{2}$/.test(season)) {
+    const [start, end] = season.split("-");
+    return `${start.slice(-2)}-${end.slice(-2)}`;
+  }
+  if (/^\d{4}-[A-Z]$/.test(season)) {
+    return season.replace("-", " ");
+  }
+  return season;
 }
 
 function splitIntoColumns<T>(items: T[], count: number): T[][] {
