@@ -1,11 +1,13 @@
 "use client";
+import dynamic from "next/dynamic";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import { getQuiz, listQuizzes } from "@/lib/quizzes";
-import Lobby from "@/components/Lobby";
-import Game from "@/components/Game";
-import Results from "@/components/Results";
+
+const Lobby = dynamic(() => import("@/components/Lobby"), { loading: RoomLoading });
+const Game = dynamic(() => import("@/components/Game"), { loading: RoomLoading });
+const Results = dynamic(() => import("@/components/Results"), { loading: RoomLoading });
 
 export type Room = {
   id: string;
@@ -112,15 +114,33 @@ export default function RoomClient({ code }: { code: string }) {
           const { data: cs } = await supabase.from("claimed_answers").select("*").eq("session_id", next.id);
           setClaims((cs ?? []) as Claim[]);
         })
-      .on("postgres_changes", { event: "INSERT", schema: "public", table: "claimed_answers" },
+      .subscribe();
+
+    return () => { active = false; supabase.removeChannel(channel); };
+  }, [me, supabase]);
+
+  // Claims are scoped by session. Without this filter, busy production traffic from
+  // other rooms can leak into the current room and force unnecessary re-renders.
+  useEffect(() => {
+    if (!session?.id) {
+      setClaims([]);
+      return;
+    }
+
+    let active = true;
+    const channel = supabase
+      .channel(`claims:${session.id}`)
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "claimed_answers", filter: `session_id=eq.${session.id}` },
         (p) => {
+          if (!active) return;
           const next = p.new as Claim;
+          if (next.session_id !== session.id) return;
           setClaims((prev) => prev.some((c) => c.id === next.id) ? prev : [...prev, next]);
         })
       .subscribe();
 
     return () => { active = false; supabase.removeChannel(channel); };
-  }, [me, supabase]);
+  }, [session?.id, supabase]);
 
   if (err) return <main className="min-h-screen flex items-center justify-center">{err}</main>;
   if (!room || !me) return <main className="min-h-screen flex items-center justify-center text-neutral-500">Loading…</main>;
@@ -154,4 +174,8 @@ export default function RoomClient({ code }: { code: string }) {
     );
   }
   return <Results room={room} players={players} claims={claims} quiz={quiz} isHost={meIsHost} meId={me.playerId} />;
+}
+
+function RoomLoading() {
+  return <main className="min-h-screen flex items-center justify-center text-neutral-500">Loading…</main>;
 }

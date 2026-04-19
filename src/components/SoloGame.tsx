@@ -1,13 +1,14 @@
 "use client";
+import dynamic from "next/dynamic";
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { getQuiz, matchAnswer } from "@/lib/quizzes";
 import { getQuizMeta } from "@/lib/quizMeta";
-import MapBoard from "./MapBoard";
-import ListBoard from "./ListBoard";
 import type { BoardOwnership } from "./BoardPrimitives";
 
 const PLAYER_COLOR = "#22c55e";
+const MapBoard = dynamic(() => import("./MapBoard"), { loading: BoardLoading });
+const ListBoard = dynamic(() => import("./ListBoard"), { loading: BoardLoading });
 
 export default function SoloGame({ quizId, timeLimit }: { quizId: string; timeLimit: number | null }) {
   const router = useRouter();
@@ -175,4 +176,12 @@ function formatTime(s: number) {
   const m = Math.floor(s / 60);
   const r = s % 60;
   return `${m}:${r.toString().padStart(2, "0")}`;
+}
+
+function BoardLoading() {
+  return (
+    <section className="min-h-[320px] rounded-xl border border-neutral-800 bg-neutral-900 flex items-center justify-center text-neutral-500">
+      Loading board…
+    </section>
+  );
 }

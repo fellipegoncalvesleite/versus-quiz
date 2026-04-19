@@ -36,6 +36,8 @@ const QUIZZES: Record<string, Quiz> = {
   copa_do_brasil_finalists: copaDoBrasilFinalists as Quiz,
 };
 
+const MATCH_INDEXES = new Map<string, Map<string, string>>();
+
 export function getQuiz(id: string): Quiz | null {
   return QUIZZES[id] ?? null;
 }
@@ -53,11 +55,28 @@ export function matchAnswer(quizId: string, input: string): string | null {
   if (!quiz) return null;
   const n = normalize(input);
   if (!n) return null;
+  return getMatchIndex(quiz).get(n) ?? null;
+}
+
+function getMatchIndex(quiz: Quiz): Map<string, string> {
+  const cached = MATCH_INDEXES.get(quiz.id);
+  if (cached) return cached;
+
+  const index = new Map<string, string>();
   for (const item of quiz.items) {
-    if (normalize(item.answer) === n) return item.id;
+    addAnswer(index, item.answer, item.id);
     for (const alias of item.aliases) {
-      if (normalize(alias) === n) return item.id;
+      addAnswer(index, alias, item.id);
     }
   }
-  return null;
+
+  MATCH_INDEXES.set(quiz.id, index);
+  return index;
+}
+
+function addAnswer(index: Map<string, string>, answer: string, itemId: string) {
+  const normalized = normalize(answer);
+  if (normalized && !index.has(normalized)) {
+    index.set(normalized, itemId);
+  }
 }

@@ -1,13 +1,15 @@
 "use client";
+import dynamic from "next/dynamic";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Room, Player, Session, Claim } from "@/app/room/[code]/RoomClient";
 import type { Quiz } from "@/lib/quizzes";
 import { matchAnswer } from "@/lib/quizzes";
 import PlayerBadges from "./PlayerBadges";
 import ClaimFeed from "./ClaimFeed";
-import MapBoard from "./MapBoard";
-import ListBoard from "./ListBoard";
 import type { BoardOwnership } from "./BoardPrimitives";
+
+const MapBoard = dynamic(() => import("./MapBoard"), { loading: BoardLoading });
+const ListBoard = dynamic(() => import("./ListBoard"), { loading: BoardLoading });
 
 export default function Game({
   room, players, session, claims, quiz, meId,
@@ -16,11 +18,16 @@ export default function Game({
 }) {
   const [input, setInput] = useState("");
   const [flash, setFlash] = useState<"ok" | "bad" | null>(null);
+  const [pendingClaimIds, setPendingClaimIds] = useState<Set<string>>(new Set());
   const inputRef = useRef<HTMLInputElement>(null);
   const lastSubmitted = useRef<string>("");
   const endedRef = useRef(false);
 
-  const claimedIds = useMemo(() => new Set(claims.map((c) => c.item_id)), [claims]);
+  const claimedIds = useMemo(() => {
+    const ids = new Set(claims.map((c) => c.item_id));
+    for (const itemId of pendingClaimIds) ids.add(itemId);
+    return ids;
+  }, [claims, pendingClaimIds]);
   const playerById = useMemo(() => new Map(players.map((p) => [p.id, p])), [players]);
   const claimByItemId = useMemo(() => new Map(claims.map((claim) => [claim.item_id, claim])), [claims]);
 
@@ -31,6 +38,17 @@ export default function Game({
     window.addEventListener("click", onClick);
     return () => window.removeEventListener("click", onClick);
   }, []);
+
+  useEffect(() => {
+    setPendingClaimIds((prev) => {
+      let changed = false;
+      const next = new Set(prev);
+      for (const claim of claims) {
+        if (next.delete(claim.item_id)) changed = true;
+      }
+      return changed ? next : prev;
+    });
+  }, [claims]);
 
   // Timer + auto-end.
   const [now, setNow] = useState(Date.now());
@@ -65,18 +83,33 @@ export default function Game({
 
     const t = setTimeout(async () => {
       lastSubmitted.current = value;
+      setPendingClaimIds((prev) => new Set(prev).add(localMatch));
+      setInput("");
       try {
         const res = await fetch(`/api/rooms/${room.code}/claim`, {
           method: "POST", headers: { "content-type": "application/json" },
           body: JSON.stringify({ player_id: meId, session_id: session.id, input: value }),
         });
         const data = await res.json();
+        if (!res.ok) throw new Error(data.error ?? "claim failed");
         if (data.claimed) {
-          setInput(""); setFlash("ok"); setTimeout(() => setFlash(null), 200);
+          setFlash("ok"); setTimeout(() => setFlash(null), 200);
         } else if (data.locked || data.invalid) {
+          setPendingClaimIds((prev) => {
+            const next = new Set(prev);
+            next.delete(localMatch);
+            return next;
+          });
           setFlash("bad"); setTimeout(() => setFlash(null), 150);
         }
-      } catch { /* network burp - ignore */ }
+      } catch {
+        setPendingClaimIds((prev) => {
+          const next = new Set(prev);
+          next.delete(localMatch);
+          return next;
+        });
+        setFlash("bad"); setTimeout(() => setFlash(null), 150);
+      }
     }, 80);
 
     return () => clearTimeout(t);
@@ -84,11 +117,11 @@ export default function Game({
 
   const ownershipOf = (itemId: string): BoardOwnership => {
     const claim = claimByItemId.get(itemId);
-    if (!claim) return null;
-    const player = playerById.get(claim.player_id);
+    const player = claim ? playerById.get(claim.player_id) : playerById.get(meId);
+    if (!claim && !pendingClaimIds.has(itemId)) return null;
     return {
-      color: player?.color ?? "#888",
-      name: player?.nickname ?? "Claimed",
+      color: player?.color ?? (claim ? "#888" : "#22c55e"),
+      name: player?.nickname ?? (claim ? "Claimed" : "You"),
     };
   };
 
@@ -152,4 +185,12 @@ function formatTime(s: number) {
   const m = Math.floor(s / 60);
   const r = s % 60;
   return `${m}:${r.toString().padStart(2, "0")}`;
+}
+
+function BoardLoading() {
+  return (
+    <section className="min-h-[320px] rounded-xl border border-neutral-800 bg-neutral-900 flex items-center justify-center text-neutral-500">
+      Loading board…
+    </section>
+  );
 }
