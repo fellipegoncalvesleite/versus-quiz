@@ -21,6 +21,13 @@ Run `supabase/schema.sql` in your Supabase SQL editor before starting.
 
 Use `SUPABASE_SERVICE_ROLE_KEY` for server writes. Do not use the project's JWT secret; Supabase will reject it as an invalid API key.
 
+## Checks
+
+```bash
+npm run lint
+npm run build
+```
+
 ## Quizzes
 
 - World Countries (map)

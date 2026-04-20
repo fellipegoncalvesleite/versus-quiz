@@ -1,6 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { getQuiz, matchAnswer } from "@/lib/quizzes";
 import { getQuizMeta } from "@/lib/quizMeta";
