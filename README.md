@@ -12,12 +12,14 @@ Real-time multiplayer typing quiz. Join a private room by code, pick a quiz, rac
 
 ```bash
 cp .env.example .env.local
-# fill in your Supabase URL, anon key, and service role key
+# fill in your Supabase project URL, anon public key, and service_role key
 npm install
 npm run dev
 ```
 
 Run `supabase/schema.sql` in your Supabase SQL editor before starting.
+
+Use `SUPABASE_SERVICE_ROLE_KEY` for server writes. Do not use the project's JWT secret; Supabase will reject it as an invalid API key.
 
 ## Quizzes
 
