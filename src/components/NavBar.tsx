@@ -16,6 +16,12 @@ export default function NavBar() {
         </Link>
         <div className="flex items-center gap-4">
           <Link
+            href="/credits"
+            className="text-sm text-neutral-400 hover:text-white transition-colors"
+          >
+            Photo Credits
+          </Link>
+          <Link
             href="/join"
             className="text-sm text-neutral-400 hover:text-white transition-colors"
           >
